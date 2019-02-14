@@ -1,0 +1,40 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "d95c2579c00197d2880d66ccf2e78043",
+    "entities": [
+      {
+        "tableName": "sms_code_provider",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`sender` TEXT NOT NULL, `codeLength` INTEGER NOT NULL, PRIMARY KEY(`sender`))",
+        "fields": [
+          {
+            "fieldPath": "sender",
+            "columnName": "sender",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "codeLength",
+            "columnName": "codeLength",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "sender"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"d95c2579c00197d2880d66ccf2e78043\")"
+    ]
+  }
+}

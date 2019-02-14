@@ -1,0 +1,100 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+if (file('../enc.properties').exists()) {
+  apply from: '../enc.properties'
+}
+
+android {
+  compileSdkVersion 28
+  defaultConfig {
+    applicationId "ie.elliot.lazysms"
+    minSdkVersion 21
+    targetSdkVersion 28
+    versionCode 1
+    versionName "1.0"
+
+    buildConfigField "String", "SLACK_TOKEN", project.properties["slack_token"]
+
+    javaCompileOptions {
+      annotationProcessorOptions {
+        arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+      }
+    }
+  }
+
+  sourceSets {
+    androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
+  }
+
+  compileOptions {
+    sourceCompatibility 1.8
+    targetCompatibility 1.8
+  }
+
+  signingConfigs {
+    if (file('signing/release.keystore').exists()) {
+      release {
+        storeFile file('../signing/release.keystore')
+        storePassword project.properties['store_password']
+        keyAlias project.properties['key_alias']
+        keyPassword project.properties['key_password']
+      }
+    }
+  }
+
+  buildTypes {
+    debug {
+      applicationIdSuffix ".debug"
+    }
+
+    release {
+      if (file('signing/release.keystore').exists()) {
+        signingConfig signingConfigs.release
+      }
+      postprocessing {
+        proguardFiles 'proguard-rules.pro'
+        removeUnusedResources = true
+        removeUnusedCode = true
+        optimizeCode = true
+        obfuscate = true
+      }
+    }
+  }
+}
+
+dependencies {
+  def coroutines = "1.1.1"
+  def retrofit = "2.5.0"
+  def okhttp3 = "3.13.1"
+  def room = "2.1.0-alpha04"
+
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+  implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
+  implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
+
+  implementation 'com.google.android.material:material:1.1.0-alpha03'
+  implementation 'androidx.appcompat:appcompat:1.1.0-alpha02'
+  implementation 'androidx.core:core-ktx:1.1.0-alpha04'
+  implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
+
+  implementation "androidx.room:room-coroutines:$room"
+  implementation "androidx.room:room-runtime:$room"
+  kapt "androidx.room:room-compiler:$room"
+
+  implementation "com.squareup.retrofit2:retrofit:$retrofit"
+  implementation "com.squareup.okhttp3:okhttp:$okhttp3"
+  implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3"
+  implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
+
+  implementation 'com.jakewharton.timber:timber:4.7.1'
+
+  testImplementation 'junit:junit:4.12'
+  testImplementation 'com.squareup.assertj:assertj-android:1.2.0'
+}
+
+androidExtensions {
+  experimental = true
+}

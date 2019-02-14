@@ -1,0 +1,5 @@
+<resources>
+  <string name="app_name">Lazy SMS</string>
+
+  <string name="format.digit_count">%d digits</string>
+</resources>
