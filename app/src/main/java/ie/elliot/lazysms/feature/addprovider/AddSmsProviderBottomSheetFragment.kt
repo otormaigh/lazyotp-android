@@ -21,13 +21,10 @@ class AddSmsProviderBottomSheetFragment : BottomSheetDialogFragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     viewModel.stateMachine.observe(viewLifecycleOwner, Observer { state -> processState(state) })
-
     tilProvider.requestFocus()
 
     btnAdd.setOnClickListener {
-      processState(Success)
-
-//      viewModel.addProvider(etProvider.text, etDigitCount.text)
+      viewModel.addProvider(etProvider.text, etDigitCount.text)
     }
     etDigitCount.setOnEditorActionListener { v, actionId, _ ->
       if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -41,8 +38,17 @@ class AddSmsProviderBottomSheetFragment : BottomSheetDialogFragment() {
     when (state) {
       is Fail.Sender -> tilProvider.error = state.reason
       is Fail.DigitCount -> tilDigitCount.error = state.reason
-      is Loading -> btnAdd.isLoading = false
-      is Success -> btnAdd.isLoading = true
+      is Loading -> {
+        btnAdd.visibility = View.INVISIBLE
+        progressBar.visibility = View.VISIBLE
+        progressBar.requestFocus()
+        ivSuccess.visibility = View.INVISIBLE
+      }
+      is Success -> {
+        btnAdd.visibility = View.INVISIBLE
+        progressBar.visibility = View.INVISIBLE
+        ivSuccess.visibility = View.VISIBLE
+      }
     }
   }
 

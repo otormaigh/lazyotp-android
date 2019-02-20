@@ -1,5 +1,6 @@
 package ie.elliot.lazysms.data
 
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.room.*
 
@@ -33,5 +34,12 @@ interface SmsCodeproviderDao {
     ORDER BY sender ASC
   """
   )
-  suspend fun fetchAll(): List<SmsCodeProvider>
+  fun fetchAllLive(): LiveData<List<SmsCodeProvider>>
+
+  @Query(
+    """
+    SELECT * FROM sms_code_provider
+  """
+  )
+  suspend fun fetchAllAsync(): List<SmsCodeProvider>
 }

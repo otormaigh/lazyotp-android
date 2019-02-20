@@ -33,7 +33,7 @@ class SmsReceiver : BroadcastReceiver(), CoroutineScope {
     ) return
     if (intent.action == Telephony.Sms.Intents.SMS_RECEIVED_ACTION) {
       launch {
-        val smsCodeProviders = context.app.database.smsCodeProviderDao().fetchAll()
+        val smsCodeProviders = context.app.database.smsCodeProviderDao().fetchAllAsync()
         Telephony.Sms.Intents.getMessagesFromIntent(intent).forEach { smsMessage ->
           smsCodeProviders.firstOrNull { it.sender == smsMessage.displayOriginatingAddress }?.let {
             postSmsCode(SmsCodeParser.parse(smsMessage.messageBody, it.codeLength))

@@ -9,15 +9,19 @@ import ie.elliot.lazysms.data.SmsCodeProvider
 import kotlinx.coroutines.launch
 
 class AddSmsProviderViewModel(private val database: LazySmsDatabase) : BaseViewModel() {
-  val _stateMachine = MutableLiveData<AddSmsProviderState>()
+  private val _stateMachine = MutableLiveData<AddSmsProviderState>()
   val stateMachine: LiveData<AddSmsProviderState>
     get() = _stateMachine
 
-  fun addProvider(sender: Editable?, digitCount: Editable?) {
-    if (sender.isNullOrEmpty() || digitCount.isNullOrEmpty())
-
+  fun addProvider(sender: Editable?, digitCount: Editable?): Unit = when {
+    sender.isNullOrEmpty() -> _stateMachine.postValue(AddSmsProviderState.Fail.Sender("Empty"))
+    digitCount.isNullOrEmpty() -> _stateMachine.postValue(AddSmsProviderState.Fail.DigitCount("Empty"))
+    else -> {
       launch {
         database.smsCodeProviderDao().insert(SmsCodeProvider(sender.toString(), digitCount.toString().toInt()))
+        _stateMachine.postValue(AddSmsProviderState.Success)
       }
+      Unit
+    }
   }
 }
