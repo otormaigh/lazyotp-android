@@ -1,0 +1,68 @@
+version: 2
+
+cache_key: &cache_key
+  key: jars-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ checksum "build.gradle" }}-{{ checksum "app/build.gradle" }}
+
+jobs:
+  check:
+    working_directory: ~/lazysms
+    docker:
+      - image: circleci/android:api-28-alpha
+    environment:
+      TERM: dumb
+
+    steps:
+      - checkout
+      - restore_cache:
+          <<: *cache_key
+
+      - run:
+          name: Check
+          command: ./gradlew check test
+      - store_artifacts:
+          path: app/build/reports/
+
+      - save_cache:
+          <<: *cache_key
+          paths:
+            - ~/.gradle/caches
+            - ~/.gradle/wrapper
+
+  build:
+    working_directory: ~/lazysms
+    docker:
+      - image: circleci/android:api-28-alpha
+    environment:
+      TERM: dumb
+
+    steps:
+      - checkout
+      - restore_cache:
+          <<: *cache_key
+
+      - run:
+          name: Decrypt files
+          command: bash enc/decrypt.sh
+      - run:
+          name: Build
+          command: ./gradlew assemble
+      - run:
+          name: Encrypt file
+          command: bash enc/encrypt.sh
+
+workflows:
+  version: 2
+  check_build:
+    jobs:
+      - check:
+          filters:
+            branches:
+              only:
+                - master
+                - /release-.*/
+      - build:
+          requires:
+            - check
+          filters:
+            branches:
+              only: master
