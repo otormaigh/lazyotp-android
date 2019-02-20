@@ -8,10 +8,14 @@ import android.content.pm.PackageManager
 import android.provider.Telephony
 import android.util.Log
 import androidx.core.content.ContextCompat
-import ie.elliot.lazysms.api.Api
+import androidx.work.Data
 import ie.elliot.lazysms.app
 import ie.elliot.lazysms.toolbox.SmsCodeParser
-import kotlinx.coroutines.*
+import ie.elliot.lazysms.toolbox.WorkScheduler
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import timber.log.Timber
 import kotlin.coroutines.CoroutineContext
 
@@ -36,17 +40,17 @@ class SmsReceiver : BroadcastReceiver(), CoroutineScope {
         val smsCodeProviders = context.app.database.smsCodeProviderDao().fetchAllAsync()
         Telephony.Sms.Intents.getMessagesFromIntent(intent).forEach { smsMessage ->
           smsCodeProviders.firstOrNull { it.sender == smsMessage.displayOriginatingAddress }?.let {
-            postSmsCode(SmsCodeParser.parse(smsMessage.messageBody, it.codeLength))
+
+            val smsCode = SmsCodeParser.parse(smsMessage.messageBody, it.codeLength)
+            WorkScheduler.oneTimeRequest<SlackPostWorker>(Data.Builder().apply {
+              putString(
+                SlackPostWorker.ARG_SMS_CODE,
+                smsCode
+              )
+            }.build())
           }
         }
       }
-    }
-  }
-
-  private fun postSmsCode(message: String) {
-    launch(Dispatchers.IO) {
-      val payload = """{"text":"$message"}""".trimIndent()
-      Api.instance.postSmsCode(payload).await()
     }
   }
 }
