@@ -5,6 +5,8 @@
 
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.RECEIVE_SMS" />
+  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+  <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
 
   <application
     android:name=".LazySmsApplication"
@@ -24,6 +26,10 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
+
+    <activity
+      android:name=".feature.settings.SettingsActivity"
+      android:screenOrientation="portrait" />
 
     <receiver android:name=".service.SmsReceiver">
       <intent-filter android:priority="1000">

@@ -2,31 +2,21 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/clMain"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:animateLayoutChanges="true"
   tools:context=".feature.MainActivity">
-
-  <ImageView
-    android:id="@+id/imageView"
-    android:layout_width="120dp"
-    android:layout_height="120dp"
-    android:src="@drawable/ic_hotel"
-    app:layout_constraintBottom_toTopOf="@id/rvSmsProvider"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
 
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/rvSmsProvider"
     android:layout_width="match_parent"
     android:layout_height="0dp"
-    android:layout_marginTop="16dp"
     android:overScrollMode="never"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHeight_percent="0.75"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/tilProvider"
     app:layout_constraintVertical_bias="1" />
 
   <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -36,6 +26,56 @@
     android:layout_margin="16dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:srcCompat="@drawable/ic_add" />
+    app:srcCompat="@drawable/ic_add"
+    app:tint="@color/colorPrimary" />
+
+  <com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/tilProvider"
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="16dp"
+    android:hint="Sender name"
+    android:visibility="gone"
+    app:layout_constraintEnd_toStartOf="@id/tilDigitCount"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintWidth_percent="0.7"
+    tools:visibility="visible">
+
+    <com.google.android.material.textfield.TextInputEditText
+      android:id="@+id/etProvider"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:imeOptions="actionNext"
+      android:inputType="text"
+      android:lines="1"
+      android:textColor="#FFF" />
+  </com.google.android.material.textfield.TextInputLayout>
+
+  <com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/tilDigitCount"
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="16dp"
+    android:hint="Digits"
+    android:visibility="gone"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@id/tilProvider"
+    app:layout_constraintTop_toTopOf="@id/tilProvider"
+    tools:visibility="visible">
+
+    <com.google.android.material.textfield.TextInputEditText
+      android:id="@+id/etDigitCount"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:imeOptions="actionDone"
+      android:inputType="numberDecimal"
+      android:textColor="#FFF" />
+  </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

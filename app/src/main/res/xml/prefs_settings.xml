@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+  <EditTextPreference
+    android:icon="@drawable/ic_slack"
+    android:key="key_slack_token"
+    android:summary="This is the Slack Token"
+    android:title="Slack Token" />
+
+  <EditTextPreference
+    android:icon="@drawable/ic_device_name"
+    android:key="key_device_name"
+    android:summary="The name of the device"
+    android:title="Device Name" />
+</PreferenceScreen>

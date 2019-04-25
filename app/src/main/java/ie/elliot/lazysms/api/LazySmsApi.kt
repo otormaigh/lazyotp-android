@@ -14,6 +14,5 @@ interface LazySmsApi {
   fun postSmsCode(
     @Field("payload") payload: String,
     @Path("token", encoded = true) token: String = BuildConfig.SLACK_TOKEN
-  )
-    : Deferred<Response<Unit>>
+  ): Deferred<Response<Unit>>
 }
