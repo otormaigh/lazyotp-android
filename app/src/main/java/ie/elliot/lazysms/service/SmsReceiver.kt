@@ -28,13 +28,8 @@ class SmsReceiver : BroadcastReceiver(), CoroutineScope {
   })
 
   override fun onReceive(context: Context, intent: Intent) {
-    Timber.e("onReceive -> ${intent.action}")
+    if (ContextCompat.checkSelfPermission(context, Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED) return
 
-    if (ContextCompat.checkSelfPermission(
-        context,
-        Manifest.permission.RECEIVE_SMS
-      ) != PackageManager.PERMISSION_GRANTED
-    ) return
     if (intent.action == Telephony.Sms.Intents.SMS_RECEIVED_ACTION) {
       launch {
         val smsCodeProviders = context.app.database.smsCodeProviderDao().fetchAllAsync()
@@ -43,10 +38,7 @@ class SmsReceiver : BroadcastReceiver(), CoroutineScope {
 
             val smsCode = SmsCodeParser.parse(smsMessage.messageBody, it.codeLength)
             WorkScheduler.oneTimeRequest<SlackPostWorker>(Data.Builder().apply {
-              putString(
-                SlackPostWorker.ARG_SMS_CODE,
-                smsCode
-              )
+              putString(SlackPostWorker.ARG_SMS_CODE, smsCode)
             }.build())
           }
         }

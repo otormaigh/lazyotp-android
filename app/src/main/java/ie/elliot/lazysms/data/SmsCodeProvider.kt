@@ -14,18 +14,17 @@ data class SmsCodeProvider(
   companion object {
     val diffUtil = object : DiffUtil.ItemCallback<SmsCodeProvider>() {
       override fun areItemsTheSame(oldItem: SmsCodeProvider, newItem: SmsCodeProvider): Boolean =
-        oldItem.sender == newItem.sender
+        oldItem.sender == newItem.sender && oldItem.codeLength == newItem.codeLength
 
       override fun areContentsTheSame(oldItem: SmsCodeProvider, newItem: SmsCodeProvider): Boolean =
-        oldItem.sender == newItem.sender &&
-          oldItem.codeLength == newItem.codeLength
+        oldItem.sender == newItem.sender && oldItem.codeLength == newItem.codeLength
     }
   }
 }
 
 @Dao
 interface SmsCodeproviderDao {
-  @Insert(onConflict = OnConflictStrategy.IGNORE)
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
   fun insert(data: SmsCodeProvider)
 
   @Query(

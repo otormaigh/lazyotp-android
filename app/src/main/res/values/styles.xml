@@ -1,9 +1,12 @@
 <resources>
 
-  <style name="AppTheme" parent="Theme.MaterialComponents.Light">
+  <style name="AppTheme" parent="Theme.MaterialComponents">
     <item name="colorPrimary">@color/colorPrimary</item>
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorSecondary">@color/colorSecondary</item>
     <item name="colorAccent">@color/colorAccent</item>
+    <item name="android:windowBackground">@color/window_background</item>
+    <item name="android:textColorPrimary">#131311</item>
   </style>
 
   <style name="Button" parent="@style/AppTheme">

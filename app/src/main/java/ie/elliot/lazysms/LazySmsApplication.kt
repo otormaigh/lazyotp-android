@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import ie.elliot.lazysms.data.LazySmsDatabase
+import ie.elliot.lazysms.toolbox.extension.phoneNumber
 import timber.log.Timber
 
 class LazySmsApplication : Application() {
@@ -21,6 +22,8 @@ class LazySmsApplication : Application() {
       override fun createStackElementTag(element: StackTraceElement) =
         "(${element.fileName}:${element.lineNumber})"
     })
+
+    Timber.e("phone_number -> $phoneNumber")
   }
 }
 
