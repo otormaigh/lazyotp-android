@@ -1,4 +1,4 @@
--keep class ie.elliot.lazysms.data.** { *; }
+-keep class ie.elliot.lazysms.** { *; }
 
 # https://github.com/square/retrofit
 -keepattributes Signature, InnerClasses, EnclosingMethod

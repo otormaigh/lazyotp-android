@@ -32,6 +32,7 @@ class SmsReceiver : BroadcastReceiver(), CoroutineScope {
       smsCodeProviders.firstOrNull { it.sender == smsMessage.displayOriginatingAddress }?.let {
 
         WorkScheduler.oneTimeRequest<SlackPostWorker>(
+          context,
           SlackPostWorker.data(
             smsMessage.displayOriginatingAddress,
             SmsCodeParser.parse(smsMessage.messageBody, it.codeLength)

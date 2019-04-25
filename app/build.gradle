@@ -13,8 +13,9 @@ android {
     applicationId "ie.elliot.lazysms"
     minSdkVersion 21
     targetSdkVersion 28
-    versionCode 1
-    versionName "1.0"
+    versionCode 2
+    versionName "0.1.$versionCode"
+    archivesBaseName = "lazysms-$versionName"
 
     buildConfigField "String", "SLACK_TOKEN", project.properties["slack_token"]
 
@@ -34,8 +35,12 @@ android {
     targetCompatibility 1.8
   }
 
+  kotlinOptions {
+    jvmTarget = '1.8'
+  }
+
   signingConfigs {
-    if (file('signing/release.keystore').exists()) {
+    if (file('../signing/release.keystore').exists()) {
       release {
         storeFile file('../signing/release.keystore')
         storePassword project.properties['store_password']
@@ -51,7 +56,7 @@ android {
     }
 
     release {
-      if (file('signing/release.keystore').exists()) {
+      if (file('../signing/release.keystore').exists()) {
         signingConfig signingConfigs.release
       }
       postprocessing {
@@ -63,26 +68,30 @@ android {
       }
     }
   }
+
+  packagingOptions {
+    exclude "META-INF/atomicfu.kotlin_module"
+  }
 }
 
 dependencies {
-  def coroutines = "1.1.1"
+  def coroutines = "1.2.0"
   def retrofit = "2.5.0"
-  def okhttp3 = "3.13.1"
-  def room = "2.1.0-alpha04"
+  def okhttp3 = "3.14.1"
+  def room = "2.1.0-alpha06"
 
-  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
   implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
   implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
 
-  implementation 'com.google.android.material:material:1.1.0-alpha03'
-  implementation 'androidx.appcompat:appcompat:1.1.0-alpha02'
-  implementation 'androidx.core:core-ktx:1.1.0-alpha04'
-  implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
+  implementation 'com.google.android.material:material:1.1.0-alpha05'
+  implementation 'androidx.appcompat:appcompat:1.1.0-alpha04'
+  implementation 'androidx.core:core-ktx:1.1.0-alpha05'
+  implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha4'
   implementation 'androidx.preference:preference:1.1.0-alpha04'
-  implementation 'android.arch.work:work-runtime-ktx:1.0.0-rc01'
+  implementation 'androidx.work:work-runtime-ktx:2.1.0-alpha01'
 
-  implementation "androidx.room:room-coroutines:$room"
+  implementation "androidx.room:room-ktx:$room"
   implementation "androidx.room:room-runtime:$room"
   kapt "androidx.room:room-compiler:$room"
 
