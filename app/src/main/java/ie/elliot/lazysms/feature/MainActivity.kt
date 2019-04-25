@@ -13,6 +13,8 @@ import ie.elliot.lazysms.R
 import ie.elliot.lazysms.app
 import ie.elliot.lazysms.feature.addprovider.AddSmsProviderState
 import ie.elliot.lazysms.feature.addprovider.AddSmsProviderViewModel
+import ie.elliot.lazysms.toolbox.extension.hideKeyboard
+import ie.elliot.lazysms.toolbox.extension.showKeyboard
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
@@ -60,6 +62,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
       } else {
         showInputConstraintSet.applyTo(clMain)
         tilProvider.requestFocus()
+        tilProvider.showKeyboard()
       }
     }
 
@@ -91,6 +94,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
       is AddSmsProviderState.Fail.Sender -> tilProvider.error = state.reason
       is AddSmsProviderState.Fail.DigitCount -> tilDigitCount.error = state.reason
       is AddSmsProviderState.Success -> {
+        tilProvider.hideKeyboard()
         hideInputConstraintSet.applyTo(clMain)
         tilProvider.error = null
         tilDigitCount.error = null

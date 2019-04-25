@@ -12,7 +12,6 @@
     android:id="@+id/rvSmsProvider"
     android:layout_width="match_parent"
     android:layout_height="0dp"
-    android:layout_marginTop="16dp"
     android:overScrollMode="never"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
@@ -50,10 +49,10 @@
       android:id="@+id/etProvider"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:textColor="#FFF"
       android:imeOptions="actionNext"
       android:inputType="text"
-      android:lines="1" />
+      android:lines="1"
+      android:textColor="#FFF" />
   </com.google.android.material.textfield.TextInputLayout>
 
   <com.google.android.material.textfield.TextInputLayout
@@ -74,8 +73,8 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:imeOptions="actionDone"
-      android:textColor="#FFF"
-      android:inputType="numberDecimal" />
+      android:inputType="numberDecimal"
+      android:textColor="#FFF" />
   </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
