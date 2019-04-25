@@ -4,17 +4,23 @@ import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.Data
 import androidx.work.WorkerParameters
+import ie.elliot.lazysms.BuildConfig
 import ie.elliot.lazysms.api.Api
-import ie.elliot.lazysms.toolbox.extension.phoneNumber
+import ie.elliot.lazysms.toolbox.deviceName
+import ie.elliot.lazysms.toolbox.settingsPrefs
+import ie.elliot.lazysms.toolbox.slackToken
 
 class SlackPostWorker(context: Context, workerParams: WorkerParameters) : CoroutineWorker(context, workerParams) {
   override suspend fun doWork(): Result {
-    val phoneNumber = applicationContext.phoneNumber
+    val deviceName = applicationContext.settingsPrefs.deviceName
     val sender = inputData.getString(ARG_SENDER)
     val smsCode = inputData.getString(ARG_SMS_CODE)
-    val message = """{ "text":"*phone*: $phoneNumber\n*sender*: $sender\n*code*: $smsCode" }""".trimIndent()
+    val message = """{ "text":"*phone*: $deviceName\n*sender*: $sender\n*code*: $smsCode" }""".trimIndent()
 
-    Api.instance.postSmsCode(message).await()
+    Api.instance.postSmsCode(
+      message,
+      applicationContext.settingsPrefs.slackToken.takeIf { it.isNotEmpty() } ?: BuildConfig.SLACK_TOKEN
+    ).await()
 
     return Result.success()
   }

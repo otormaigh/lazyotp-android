@@ -1,8 +1,11 @@
 package ie.elliot.lazysms.feature
 
 import android.Manifest
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintSet
@@ -13,6 +16,7 @@ import ie.elliot.lazysms.R
 import ie.elliot.lazysms.app
 import ie.elliot.lazysms.feature.addprovider.AddSmsProviderState
 import ie.elliot.lazysms.feature.addprovider.AddSmsProviderViewModel
+import ie.elliot.lazysms.feature.settings.SettingsActivity
 import ie.elliot.lazysms.toolbox.extension.hideKeyboard
 import ie.elliot.lazysms.toolbox.extension.showKeyboard
 import kotlinx.android.synthetic.main.activity_main.*
@@ -87,6 +91,18 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
   override fun onPause() {
     super.onPause()
     coroutineContext.cancel()
+  }
+
+  override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    menuInflater.inflate(R.menu.menu_main, menu)
+    return true
+  }
+
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    when (item.itemId) {
+      R.id.menuSettings -> startActivity(Intent(this, SettingsActivity::class.java))
+    }
+    return super.onOptionsItemSelected(item)
   }
 
   private fun processState(state: AddSmsProviderState) {
