@@ -11,4 +11,8 @@
     android:key="key_device_name"
     android:summary="The name of the device"
     android:title="Device Name" />
+
+  <Preference
+    android:key="btnSendTest"
+    android:title="Send Test Message" />
 </PreferenceScreen>
