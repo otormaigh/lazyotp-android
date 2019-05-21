@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
-  package="ie.elliot.lazysms">
+  package="ie.otormaigh.lazyotp">
 
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.RECEIVE_SMS" />
@@ -9,7 +9,7 @@
   <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
 
   <application
-    android:name=".LazySmsApplication"
+    android:name="ie.otormaigh.lazyotp.LazySmsApplication"
     android:allowBackup="true"
     android:icon="@mipmap/ic_launcher"
     android:label="@string/app_name"
@@ -17,7 +17,7 @@
     android:theme="@style/AppTheme"
     tools:ignore="GoogleAppIndexingWarning">
     <activity
-      android:name="ie.elliot.lazysms.feature.MainActivity"
+      android:name="ie.otormaigh.lazyotp.feature.MainActivity"
       android:screenOrientation="portrait">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
@@ -27,10 +27,10 @@
     </activity>
 
     <activity
-      android:name=".feature.settings.SettingsActivity"
+      android:name="ie.otormaigh.lazyotp.feature.settings.SettingsActivity"
       android:screenOrientation="portrait" />
 
-    <receiver android:name=".service.SmsReceiver">
+    <receiver android:name="ie.otormaigh.lazyotp.service.SmsReceiver">
       <intent-filter android:priority="1000">
         <action android:name="android.provider.Telephony.SMS_RECEIVED" />
       </intent-filter>
