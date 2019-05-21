@@ -10,12 +10,12 @@ if (file('../enc.properties').exists()) {
 android {
   compileSdkVersion 28
   defaultConfig {
-    applicationId "ie.elliot.lazysms"
+    applicationId "ie.otormaigh.lazyotp"
     minSdkVersion 21
     targetSdkVersion 28
     versionCode 3
     versionName "0.1.$versionCode"
-    archivesBaseName = "lazysms-$versionName"
+    archivesBaseName = "lazyotp-$versionName"
 
     buildConfigField "String", "SLACK_TOKEN", project.properties["slack_token"]
 

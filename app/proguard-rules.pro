@@ -1,4 +1,4 @@
--keep class ie.elliot.lazysms.** { *; }
+-keep class ie.otormaigh.lazyotp.** { *; }
 
 # https://github.com/square/retrofit
 -keepattributes Signature, InnerClasses, EnclosingMethod
