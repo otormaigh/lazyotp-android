@@ -2,10 +2,8 @@
 
 The lazy way to get a one time password sent to a device.
 
-
 License
 =======
-
     Copyright 2019 Elliot Tormey
 
     Licensed under the Apache License, Version 2.0 (the "License");
