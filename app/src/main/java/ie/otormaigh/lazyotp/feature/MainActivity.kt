@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
       }
     }
 
-    etDigitCount.setOnEditorActionListener { v, actionId, _ ->
+    etDigitCount.setOnEditorActionListener { _, actionId, _ ->
       if (actionId == EditorInfo.IME_ACTION_DONE) fabAdd.performClick()
       false
     }
