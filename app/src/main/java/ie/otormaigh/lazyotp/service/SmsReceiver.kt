@@ -33,7 +33,7 @@ class SmsReceiver : BroadcastReceiver(), CoroutineScope {
 
         WorkScheduler.oneTimeRequest<SlackPostWorker>(
           context,
-          SlackPostWorker.data(
+          SlackPostWorker.smsCodeData(
             smsMessage.displayOriginatingAddress,
             SmsCodeParser.parse(smsMessage.messageBody, it.codeLength)
           )
