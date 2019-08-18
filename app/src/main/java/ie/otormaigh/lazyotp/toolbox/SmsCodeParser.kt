@@ -2,7 +2,6 @@ package ie.otormaigh.lazyotp.toolbox
 
 import java.util.regex.Pattern
 
-
 object SmsCodeParser {
   fun parse(message: String, codeLength: Int): String {
     val pattern = Pattern.compile("(\\d{$codeLength})")

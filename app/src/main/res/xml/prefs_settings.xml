@@ -12,6 +12,15 @@
     android:summary="The name of the device"
     android:title="Device Name" />
 
+  <EditTextPreference
+    android:defaultValue="25"
+    android:digits="0123456789"
+    android:icon="@drawable/ic_battery"
+    android:inputType="numberDecimal"
+    android:key="key_battery_threshold"
+    android:summary="Low battery threshold"
+    android:title="Battery" />
+
   <Preference
     android:key="btnSendTest"
     android:title="Send Test Message" />
