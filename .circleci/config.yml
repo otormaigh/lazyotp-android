@@ -96,3 +96,8 @@ workflows:
           requires:
             - quality
             - test
+          filters:
+            branches:
+              only:
+                - master
+                - /release-.*/

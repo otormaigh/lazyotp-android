@@ -1,6 +1,5 @@
 package ie.otormaigh.lazyotp.api
 
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import ie.otormaigh.lazyotp.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -16,7 +15,6 @@ object Api {
   private val retrofit = Retrofit.Builder()
     .baseUrl("https://hooks.slack.com/services/")
     .client(okhttp.build())
-    .addCallAdapterFactory(CoroutineCallAdapterFactory())
     .build()
 
   val instance = retrofit.create(LazySmsApi::class.java)

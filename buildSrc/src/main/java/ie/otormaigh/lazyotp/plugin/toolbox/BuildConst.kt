@@ -9,8 +9,8 @@ object BuildConst {
 
   object Version {
     private const val major = 0
-    private const val minor = 1
-    private const val patch = 3
+    private const val minor = 2
+    private const val patch = 0
     private val build = System.getenv("CIRCLE_BUILD_NUM")?.toInt() ?: 1
 
     val name = "$major.$minor.$patch-${Git.shortHash}"
