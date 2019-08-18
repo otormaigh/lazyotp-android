@@ -7,7 +7,7 @@ jobs:
   check:
     working_directory: ~/lazyotp
     docker:
-      - image: circleci/android:api-28-alpha
+      - image: circleci/android:api-29
     environment:
       TERM: dumb
 
@@ -31,7 +31,7 @@ jobs:
   build:
     working_directory: ~/lazyotp
     docker:
-      - image: circleci/android:api-28-alpha
+      - image: circleci/android:api-29
     environment:
       TERM: dumb
 
