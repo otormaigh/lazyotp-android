@@ -22,9 +22,9 @@ commands:
       - restore_cache: *restore_gradle_cache
 
 config: &config
-  working_directory: ~/danger
+  working_directory: ~/lazy-otp
   docker:
-    - image: circleci/android:api-28-alpha
+    - image: circleci/android:api-29
   parallelism: 2
   environment:
     TERM: dumb
