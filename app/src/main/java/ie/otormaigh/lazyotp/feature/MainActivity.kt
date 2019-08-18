@@ -80,11 +80,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
     })
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) requestPermissions(
-      arrayOf(
-        Manifest.permission.RECEIVE_SMS,
-        Manifest.permission.READ_PHONE_STATE,
-        Manifest.permission.READ_PHONE_NUMBERS
-      ), 13
+      arrayOf(Manifest.permission.RECEIVE_SMS), 13
     )
   }
 
