@@ -1,4 +1,4 @@
-import ie.otormaigh.lazyotp.plugin.toolbox.BuildConst
+import ie.otormaigh.lazyotp.plugin.SemVer
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
@@ -15,8 +15,8 @@ android {
     applicationId "ie.otormaigh.lazyotp"
     minSdkVersion 21
     targetSdkVersion 29
-    versionCode BuildConst.Version.code
-    versionName BuildConst.Version.name
+    versionCode SemVer.code
+    versionName SemVer.name
     archivesBaseName = "lazyotp-$versionName"
 
     buildConfigField "String", "SLACK_TOKEN", project.properties["slack_token"]
