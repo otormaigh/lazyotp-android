@@ -26,9 +26,10 @@ class BatteryLevelService : Service() {
     override fun onReceive(context: Context?, intent: Intent?) {
       if (intent?.action != Intent.ACTION_BATTERY_CHANGED) return
       val batteryLevel = intent.extras?.getInt(BatteryManager.EXTRA_LEVEL) ?: -1
-      Timber.e("BatteryLevelService : batteryLevel -> $batteryLevel")
 
       if (batteryLevel > 0 && batteryLevel < application.settingsPrefs.batteryThreshold) {
+        Timber.e("BatteryLevelService : batteryLevel -> $batteryLevel")
+
         WorkScheduler.oneTimeRequest<SlackPostWorker>(
           applicationContext,
           SlackPostWorker.lowBatteryData()
