@@ -44,7 +44,14 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
   override val coroutineContext: CoroutineContext
     get() = Job()
 
-  private val recyclerAdapter by lazy { SmsProviderRecyclerAdapter() }
+  private val recyclerAdapter by lazy {
+    SmsProviderRecyclerAdapter { provider ->
+      fabAdd.performClick()
+      etProvider.tag = provider.sender
+      etProvider.setText(provider.sender)
+      etDigitCount.setText(provider.codeLength.toString())
+    }
+  }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -62,7 +69,8 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
     }
     fabAdd.setOnClickListener {
       if (tilProvider.isVisible) {
-        viewModel.addProvider(etProvider.text, etDigitCount.text)
+        if (etProvider.tag == null) viewModel.addProvider(etProvider.text, etDigitCount.text)
+        else viewModel.updateProvider(etProvider.tag.toString(), etProvider.text, etDigitCount.text)
       } else {
         showInputConstraintSet.applyTo(clMain)
         tilProvider.requestFocus()
@@ -110,6 +118,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         hideInputConstraintSet.applyTo(clMain)
         tilProvider.error = null
         tilDigitCount.error = null
+        etProvider.tag = null
         etProvider.setText("")
         etDigitCount.setText("")
       }
