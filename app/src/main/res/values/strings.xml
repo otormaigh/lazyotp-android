@@ -2,4 +2,6 @@
   <string name="app_name">Lazy OTP</string>
 
   <string name="format.digit_count">%d digits</string>
+
+  <string name="notif.content_text">Don\'t worry, go take a nap, I\'ll keep an eye out for any OTP codes.</string>
 </resources>
