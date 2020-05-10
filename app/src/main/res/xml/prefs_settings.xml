@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
   <EditTextPreference
     android:icon="@drawable/ic_slack"
     android:key="key_slack_token"
@@ -12,7 +13,22 @@
     android:summary="The name of the device"
     android:title="Device Name" />
 
+  <SwitchPreference
+    android:key="key_battery_warning"
+    android:title="Enable Battery Warning"
+    app:defaultValue="false" />
+
+  <EditTextPreference
+    android:defaultValue="25"
+    android:digits="0123456789"
+    android:icon="@drawable/ic_battery"
+    android:inputType="numberDecimal"
+    android:key="key_battery_threshold"
+    android:summary="Low battery threshold"
+    android:title="Battery" />
+
   <Preference
+    android:icon="@drawable/ic_message"
     android:key="btnSendTest"
     android:title="Send Test Message" />
 </PreferenceScreen>

@@ -1,3 +1,5 @@
+import ie.otormaigh.lazyotp.plugin.SemVer
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -8,13 +10,14 @@ if (file('../enc.properties').exists()) {
 }
 
 android {
-  compileSdkVersion 28
+  compileSdkVersion versions.compileSdk
+
   defaultConfig {
     applicationId "ie.otormaigh.lazyotp"
-    minSdkVersion 21
-    targetSdkVersion 28
-    versionCode 3
-    versionName "0.1.$versionCode"
+    minSdkVersion versions.minSdk
+    targetSdkVersion versions.targetSdk
+    versionCode SemVer.code
+    versionName SemVer.name
     archivesBaseName = "lazyotp-$versionName"
 
     buildConfigField "String", "SLACK_TOKEN", project.properties["slack_token"]
@@ -31,15 +34,19 @@ android {
   }
 
   compileOptions {
-    sourceCompatibility 1.8
-    targetCompatibility 1.8
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
   }
 
   kotlinOptions {
-    jvmTarget = '1.8'
+    jvmTarget = JavaVersion.VERSION_1_8
   }
 
   signingConfigs {
+    debug {
+      storeFile file('../signing/debug.keystore')
+    }
+
     if (file('../signing/release.keystore').exists()) {
       release {
         storeFile file('../signing/release.keystore')
@@ -58,6 +65,8 @@ android {
     release {
       if (file('../signing/release.keystore').exists()) {
         signingConfig signingConfigs.release
+      } else {
+        signingConfig signingConfigs.debug
       }
       postprocessing {
         proguardFiles 'proguard-rules.pro'
@@ -75,35 +84,28 @@ android {
 }
 
 dependencies {
-  def coroutines = "1.2.1"
-  def retrofit = "2.5.0"
-  def okhttp3 = "3.14.1"
-  def room = "2.1.0-beta01"
+  implementation deps.kotlin.stdlib
+  implementation deps.kotlin.coroutine.core
+  implementation deps.kotlin.coroutine.android
 
-  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-  implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
-  implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
+  implementation deps.google.material
+  implementation deps.androidx.appcompat
+  implementation deps.androidx.core_ktx
+  implementation deps.androidx.constraintlayout
+  implementation deps.androidx.prefs
+  implementation deps.androidx.work.runtime_ktx
+  implementation deps.androidx.room.core_ktx
+  implementation deps.androidx.room.runtime
+  kapt deps.androidx.room.compiler
 
-  implementation 'com.google.android.material:material:1.1.0-alpha05'
-  implementation 'androidx.appcompat:appcompat:1.1.0-alpha05'
-  implementation 'androidx.core:core-ktx:1.2.0-alpha01'
-  implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta1'
-  implementation 'androidx.preference:preference:1.1.0-alpha05'
-  implementation 'androidx.work:work-runtime-ktx:2.1.0-alpha02'
+  implementation deps.square.retrofit.core
+  implementation deps.square.okhttp.core
+  implementation deps.square.okhttp.logging
 
-  implementation "androidx.room:room-ktx:$room"
-  implementation "androidx.room:room-runtime:$room"
-  kapt "androidx.room:room-compiler:$room"
+  implementation deps.timber
 
-  implementation "com.squareup.retrofit2:retrofit:$retrofit"
-  implementation "com.squareup.okhttp3:okhttp:$okhttp3"
-  implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3"
-  implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
-
-  implementation 'com.jakewharton.timber:timber:4.7.1'
-
-  testImplementation 'junit:junit:4.12'
-  testImplementation 'com.squareup.assertj:assertj-android:1.2.0'
+  testImplementation deps.junit
+  testImplementation deps.square.assertj
 }
 
 androidExtensions {

@@ -5,8 +5,7 @@
 
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.RECEIVE_SMS" />
-  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-  <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
   <application
     android:name="ie.otormaigh.lazyotp.LazySmsApplication"
@@ -18,7 +17,7 @@
     tools:ignore="GoogleAppIndexingWarning">
     <activity
       android:name="ie.otormaigh.lazyotp.feature.MainActivity"
-      android:screenOrientation="portrait">
+      android:screenOrientation="fullSensor">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
@@ -28,12 +27,14 @@
 
     <activity
       android:name="ie.otormaigh.lazyotp.feature.settings.SettingsActivity"
-      android:screenOrientation="portrait" />
+      android:screenOrientation="fullSensor" />
 
     <receiver android:name="ie.otormaigh.lazyotp.service.SmsReceiver">
       <intent-filter android:priority="1000">
         <action android:name="android.provider.Telephony.SMS_RECEIVED" />
       </intent-filter>
     </receiver>
+
+    <service android:name=".service.BatteryLevelService" />
   </application>
 </manifest>

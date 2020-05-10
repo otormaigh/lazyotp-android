@@ -1,14 +1,26 @@
+# IDEA
 *.iml
+.idea/*
+!.idea/codeStyleSettings.xml
+!.idea/copyright
+!.idea/codeStyles
+!.idea/icon.png
+!.idea/icon_dark.png
+
+# Gradle
 .gradle
-/local.properties
-/.idea/workspace.xml
-/.idea/libraries
-.DS_Store
-/build
+build
+/reports
+
+# Gradle Android
+**/local.properties
 /captures
-.externalNativeBuild
-.idea/
-config/
+
+# OSX
+.DS_Store
+
+# Danger
+**/vendor/bundle/
 
 enc.properties
 signing/release.keystore

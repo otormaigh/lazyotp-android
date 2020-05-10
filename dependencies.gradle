@@ -1,0 +1,50 @@
+ext {
+  versions = [
+    compileSdk: 29,
+    minSdk    : 21,
+    targetSdk : 29,
+    kotlin    : "1.3.72",            // org.jetbrains.kotlin
+    coroutine : "1.3.6",             // org.jetbrains.kotlinx:kotlinx-coroutines
+    room      : "2.2.5",             // androidx.room
+    okhttp    : "4.6.0",             // com.squareup.okhttp3
+    retrofit  : "2.8.1",             // com.squareup.retrofit2
+  ]
+  deps = [
+    androidx: [
+      appcompat       : 'androidx.appcompat:appcompat:1.2.0-beta01',
+      constraintlayout: 'androidx.constraintlayout:constraintlayout:2.0.0-beta5',
+      core_ktx        : 'androidx.core:core-ktx:1.3.0-rc01',
+      prefs           : 'androidx.preference:preference:1.1.1',
+      room            : [
+        compiler: "androidx.room:room-compiler:${versions.room}",
+        core_ktx: "androidx.room:room-ktx:${versions.room}",
+        runtime : "androidx.room:room-runtime:${versions.room}"
+      ],
+      work            : [
+        runtime_ktx: 'androidx.work:work-runtime-ktx:2.4.0-alpha03'
+      ]
+    ],
+    google  : [
+      material: 'com.google.android.material:material:1.2.0-alpha06'
+    ],
+    junit   : 'junit:junit:4.13',
+    kotlin  : [
+      stdlib   : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}",
+      coroutine: [
+        core   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutine}",
+        android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutine}"
+      ]
+    ],
+    square  : [
+      assertj : 'com.squareup.assertj:assertj-android:1.2.0',
+      okhttp  : [
+        core   : "com.squareup.okhttp3:okhttp:${versions.okhttp}",
+        logging: "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}",
+      ],
+      retrofit: [
+        core: "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+      ]
+    ],
+    timber  : 'com.jakewharton.timber:timber:4.7.1'
+  ]
+}

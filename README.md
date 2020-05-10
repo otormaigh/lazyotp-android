@@ -2,10 +2,11 @@
 
 The lazy way to get a one time password sent to a device.
 
+### Runtime Permissions
+* `RECEIVE_SMS` : Needed to be able to read the SMS message from the sender for each OTP provider. See [SmsReceiver.kt][1] to see how incoming messages are processed.
 
 License
 =======
-
     Copyright 2019 Elliot Tormey
 
     Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,3 +20,5 @@ License
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+
+[1]: app/src/main/java/ie/otormaigh/lazyotp/service/SmsReceiver.kt
