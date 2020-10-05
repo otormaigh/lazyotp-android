@@ -11,7 +11,7 @@ import ie.otormaigh.lazyotp.toolbox.extension.getString
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.list_item_sms_provider.*
 
-class SmsProviderRecyclerAdapter :
+class SmsProviderRecyclerAdapter(private val clickListener: (provider: SmsCodeProvider) -> Unit) :
   ListAdapter<SmsCodeProvider, SmsProviderRecyclerAdapter.ViewHolder>(SmsCodeProvider.diffUtil) {
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
     ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.list_item_sms_provider, parent, false))
@@ -24,6 +24,10 @@ class SmsProviderRecyclerAdapter :
     fun bind(smsCodeProvider: SmsCodeProvider) {
       tvSender.text = smsCodeProvider.sender
       tvCodeLength.text = getString(R.string.format_digit_count, smsCodeProvider.codeLength)
+
+      containerView.setOnClickListener {
+        clickListener(smsCodeProvider)
+      }
     }
   }
 }

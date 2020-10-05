@@ -13,15 +13,30 @@ class AddSmsProviderViewModel(private val database: LazySmsDatabase) : BaseViewM
   val stateMachine: LiveData<AddSmsProviderState>
     get() = _stateMachine
 
-  fun addProvider(sender: Editable?, digitCount: Editable?): Unit = when {
-    sender.isNullOrEmpty() -> _stateMachine.postValue(AddSmsProviderState.Fail.Sender("Empty"))
-    digitCount.isNullOrEmpty() -> _stateMachine.postValue(AddSmsProviderState.Fail.DigitCount("Empty"))
-    else -> {
+  fun addProvider(sender: Editable?, digitCount: Editable?) {
+    if (validateInput(sender, digitCount)) {
       launch {
         database.smsCodeProviderDao().insert(SmsCodeProvider(sender.toString(), digitCount.toString().toInt()))
         _stateMachine.postValue(AddSmsProviderState.Success)
       }
-      Unit
     }
+  }
+
+  fun updateProvider(providerId: String, sender: Editable?, digitCount: Editable?) {
+    if (validateInput(sender, digitCount)) {
+      launch {
+        database.smsCodeProviderDao().upsert(providerId, SmsCodeProvider(sender.toString(), digitCount.toString().toInt()))
+        _stateMachine.postValue(AddSmsProviderState.Success)
+      }
+    }
+  }
+
+  private fun validateInput(sender: Editable?, digitCount: Editable?): Boolean {
+    when {
+      sender.isNullOrEmpty() -> _stateMachine.postValue(AddSmsProviderState.Fail.Sender("Empty"))
+      digitCount.isNullOrEmpty() -> _stateMachine.postValue(AddSmsProviderState.Fail.DigitCount("Empty"))
+      else -> return true
+    }
+    return false
   }
 }

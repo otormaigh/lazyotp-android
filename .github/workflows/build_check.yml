@@ -1,0 +1,42 @@
+name: Build + Check
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.3.3
+      - uses: actions/cache@v2.1.1
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: ${{ runner.os }}-gradle-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v1.0.3
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+
+      - name: Install dependencies
+        run: ./gradlew dependencies --stacktrace --scan
+      - name: Quality checks
+        run: ./gradlew lint --stacktrace --scan
+      - name: Assemble Release
+        if: ${{ github.event_name == 'pull_request' || github.ref == 'master' }}
+        run: ./gradlew clean assembleRelease --stacktrace --scan
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: outputs
+          path: |
+            app/build/outputs/apk/release
+            app/build/outputs/mapping/release/mapping.txt

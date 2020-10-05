@@ -1,19 +1,19 @@
 ext {
   versions = [
-    compileSdk: 29,
+    compileSdk: 30,
     minSdk    : 21,
-    targetSdk : 29,
-    kotlin    : "1.3.72",            // org.jetbrains.kotlin
-    coroutine : "1.3.6",             // org.jetbrains.kotlinx:kotlinx-coroutines
-    room      : "2.2.5",             // androidx.room
-    okhttp    : "4.6.0",             // com.squareup.okhttp3
-    retrofit  : "2.8.1",             // com.squareup.retrofit2
+    targetSdk : 30,
+    kotlin    : "1.4.10",            // org.jetbrains.kotlin
+    coroutine : "1.3.9",             // org.jetbrains.kotlinx:kotlinx-coroutines
+    room      : "2.3.0-alpha02",     // androidx.room
+    okhttp    : "4.9.0",             // com.squareup.okhttp3
+    retrofit  : "2.9.0",             // com.squareup.retrofit2
   ]
   deps = [
     androidx: [
-      appcompat       : 'androidx.appcompat:appcompat:1.2.0-beta01',
-      constraintlayout: 'androidx.constraintlayout:constraintlayout:2.0.0-beta5',
-      core_ktx        : 'androidx.core:core-ktx:1.3.0-rc01',
+      appcompat       : 'androidx.appcompat:appcompat:1.3.0-alpha02',
+      constraintlayout: 'androidx.constraintlayout:constraintlayout:2.0.1',
+      core_ktx        : 'androidx.core:core-ktx:1.5.0-alpha04',
       prefs           : 'androidx.preference:preference:1.1.1',
       room            : [
         compiler: "androidx.room:room-compiler:${versions.room}",
@@ -21,11 +21,11 @@ ext {
         runtime : "androidx.room:room-runtime:${versions.room}"
       ],
       work            : [
-        runtime_ktx: 'androidx.work:work-runtime-ktx:2.4.0-alpha03'
+        runtime_ktx: 'androidx.work:work-runtime-ktx:2.5.0-alpha02'
       ]
     ],
     google  : [
-      material: 'com.google.android.material:material:1.2.0-alpha06'
+      material: 'com.google.android.material:material:1.3.0-alpha03'
     ],
     junit   : 'junit:junit:4.13',
     kotlin  : [

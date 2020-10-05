@@ -41,4 +41,18 @@ interface SmsCodeproviderDao {
   """
   )
   suspend fun fetchAllAsync(): List<SmsCodeProvider>
+
+  @Transaction
+  suspend fun upsert(providerId: String, newData: SmsCodeProvider) {
+    delete(providerId)
+    insert(newData)
+  }
+
+  @Query(
+    """
+    DELETE from sms_code_provider 
+    WHERE sender = :id
+  """
+  )
+  suspend fun delete(id: String)
 }

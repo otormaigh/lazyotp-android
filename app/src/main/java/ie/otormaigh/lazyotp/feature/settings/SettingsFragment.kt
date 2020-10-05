@@ -24,7 +24,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
       true
     }
 
-    findPreference<Preference>("key_battery_warning")?.onPreferenceClickListener = Preference.OnPreferenceClickListener { pref ->
+    findPreference<Preference>("key_battery_warning")?.onPreferenceClickListener = Preference.OnPreferenceClickListener {
       if (context?.settingsPrefs?.batteryWarningEnabled == true) {
         findPreference<Preference>("key_battery_threshold")?.isVisible = true
         BatteryLevelService.start(requireContext())
