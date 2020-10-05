@@ -7,7 +7,7 @@ buildscript {
 
   }
   dependencies {
-    classpath 'com.android.tools.build:gradle:4.1.0-alpha09'
+    classpath 'com.android.tools.build:gradle:4.2.0-alpha13'
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
   }
 }
@@ -24,6 +24,6 @@ task clean(type: Delete) {
 }
 
 wrapper {
-  gradleVersion = "6.4"
+  gradleVersion = "6.6.1"
   distributionType = "all"
 }
