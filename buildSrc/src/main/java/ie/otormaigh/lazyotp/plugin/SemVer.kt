@@ -20,12 +20,7 @@ object SemVer {
 
   @JvmStatic
   val name: String
-    get() {
-      val versionName = "$major.$minor.$patch-${Git.shortHash}"
-
-      return if (isCi) versionName
-      else "$versionName-local"
-    }
+    get() = "$major.$minor.$patch-${Git.shortHash}"
 
   @JvmStatic
   val code: Int
