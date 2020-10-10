@@ -33,10 +33,3 @@ jobs:
       - name: Assemble Release
         if: ${{ github.event_name == 'pull_request' || github.ref == 'master' }}
         run: ./gradlew clean assembleRelease --stacktrace --scan
-
-      - uses: actions/upload-artifact@v2
-        with:
-          name: outputs
-          path: |
-            app/build/outputs/apk/release
-            app/build/outputs/mapping/release/mapping.txt
