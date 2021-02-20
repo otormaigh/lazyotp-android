@@ -55,30 +55,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.3.4
-        with:
-          repository: jakewharton/diffuse
-          ref: dff1e9299386ae0e14dcf5ec7395ea0c26145f55
-      - uses: actions/cache@v2.1.3
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle', '**/gradle.properties') }}
-          restore-keys: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle', '**/gradle.properties') }}
-
-      - name: Install JDK
-        uses: actions/setup-java@v1.4.3
-        with:
-          java-version: 8
-
-      - name: Build diffuse
-        run: ./gradlew assemble
-
       - name: Download apks
         uses: actions/download-artifact@v2.0.6
         with:
           name: apks
 
       - name: Run diffuse
-        run: ./diffuse/build/libs/diffuse-0.2.0-SNAPSHOT-binary.jar diff latest-release.apk release-${{ github.sha }}.apk > apk-diff-${{ github.sha }}.txt
+        run: .github/script/diffuse-0.1.0-binary.jar diff latest-release.apk release-${{ github.sha }}.apk > apk-diff-${{ github.sha }}.txt
       - name: Prepare PR comment
         run: printf "\`\`\`\n" > pr-comment.txt && sed '/====   DEX   ====/q' apk-diff-${{ github.sha }}.txt | tac | sed "1,2d" | tac | sed -e :a -e '/^\n*$/{$d;N;};/\n$/ba' >> pr-comment.txt && echo "\`\`\`"  >> pr-comment.txt
       - name: Comment PR
