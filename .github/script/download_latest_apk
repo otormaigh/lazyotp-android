@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -o pipefail
+set -eu
+
+GITHUB_API_TOKEN_USERNAME="otormaigh-bot"
+
+latest_gh_release() {
+  curl -#L -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$GITHUB_REPOSITORY/releases/latest"
+}
+
+get_asset_url() {
+  cat - | ruby -rjson -e 'puts JSON.parse(STDIN.read)["assets"].select { |j| j["name"].end_with?(".apk") }.map { |j| j["url"] }.first'
+}
+
+download_latest_apk() {
+  local asset_url=$(latest_gh_release | get_asset_url)
+
+  curl -#Lo "$1" -u "$GITHUB_API_TOKEN_USERNAME:$GITHUB_TOKEN" -H 'Accept: application/octet-stream' "$asset_url"
+}
+
+# $1 is a filename
+download_latest_apk "$1"
