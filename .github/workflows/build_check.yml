@@ -35,7 +35,7 @@ jobs:
       - name: Quality checks
         run: ./gradlew lint --stacktrace --scan
       - name: Assemble Release
-        if: ${{ github.event_name == 'pull_request' || github.ref == 'master' }}
+        if: ${{ github.event_name == 'pull_request' || github.ref == 'refs/head/master' }}
         run: ./gradlew clean assembleRelease --stacktrace --scan
 
       - name: Archive APKs
