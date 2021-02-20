@@ -2,7 +2,6 @@ import ie.otormaigh.lazyotp.plugin.SemVer
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 if (file('../enc.properties').exists()) {
@@ -27,6 +26,10 @@ android {
         arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
       }
     }
+  }
+
+  buildFeatures {
+    viewBinding true
   }
 
   sourceSets {
@@ -106,8 +109,4 @@ dependencies {
 
   testImplementation deps.junit
   testImplementation deps.square.assertj
-}
-
-androidExtensions {
-  experimental = true
 }
