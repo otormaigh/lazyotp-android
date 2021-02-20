@@ -21,7 +21,7 @@ ext {
         runtime : "androidx.room:room-runtime:${versions.room}"
       ],
       work            : [
-        runtime_ktx: 'androidx.work:work-runtime-ktx:2.5.0-alpha02'
+        runtime_ktx: 'androidx.work:work-runtime-ktx:2.7.0-alpha01'
       ]
     ],
     google  : [
