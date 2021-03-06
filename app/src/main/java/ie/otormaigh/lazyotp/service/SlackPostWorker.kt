@@ -9,6 +9,8 @@ import ie.otormaigh.lazyotp.api.Api
 import ie.otormaigh.lazyotp.toolbox.deviceName
 import ie.otormaigh.lazyotp.toolbox.settingsPrefs
 import ie.otormaigh.lazyotp.toolbox.slackToken
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
 
 class SlackPostWorker(context: Context, workerParams: WorkerParameters) :
   CoroutineWorker(context, workerParams) {
@@ -22,7 +24,7 @@ class SlackPostWorker(context: Context, workerParams: WorkerParameters) :
     }
 
     Api.instance.postSmsCode(
-      message,
+      message.toRequestBody("application/json".toMediaTypeOrNull()),
       applicationContext.settingsPrefs.slackToken.takeIf { it.isNotEmpty() }
         ?: BuildConfig.SLACK_TOKEN
     )

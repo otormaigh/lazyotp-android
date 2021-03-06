@@ -3,11 +3,11 @@ buildscript {
 
   repositories {
     google()
-    jcenter()
+    mavenCentral()
 
   }
   dependencies {
-    classpath 'com.android.tools.build:gradle:7.0.0-alpha07'
+    classpath 'com.android.tools.build:gradle:7.0.0-alpha08'
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
   }
 }
@@ -15,7 +15,7 @@ buildscript {
 allprojects {
   repositories {
     google()
-    jcenter()
+    mavenCentral()
   }
 }
 
@@ -24,6 +24,6 @@ task clean(type: Delete) {
 }
 
 wrapper {
-  gradleVersion = "6.8.2"
+  gradleVersion = "6.8.3"
   distributionType = "bin"
 }
