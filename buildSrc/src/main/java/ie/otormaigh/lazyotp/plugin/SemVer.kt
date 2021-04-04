@@ -10,8 +10,8 @@ import ie.otormaigh.lazyotp.plugin.toolbox.Git
  */
 object SemVer {
   private const val major = 0
-  private const val minor = 2
-  private const val patch = 2
+  private const val minor = 3
+  private const val patch = 0
   private val build: Int
     get() = if (isCi) Integer.parseInt(System.getProperty("CIRCLE_BUILD_NUM"))
     else 0
