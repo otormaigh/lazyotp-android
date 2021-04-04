@@ -1,10 +1,11 @@
 package ie.otormaigh.lazyotp.toolbox
 
-import java.util.regex.Pattern
-
 object SmsCodeParser {
   fun parse(message: String, codeLength: Int): String {
-    val pattern = Pattern.compile("(\\d{$codeLength})")
+    val pattern = """\b[A-Z0-9]{codeLength}\b"""
+      .replace("codeLength", codeLength.toString())
+      .toPattern()
+
     val matcher = pattern.matcher(message)
     return if (matcher.find()) matcher.group(0) ?: ""
     else ""
