@@ -18,10 +18,15 @@ ext {
       room            : [
         compiler: "androidx.room:room-compiler:${versions.room}",
         core_ktx: "androidx.room:room-ktx:${versions.room}",
-        runtime : "androidx.room:room-runtime:${versions.room}"
+        runtime : "androidx.room:room-runtime:${versions.room}",
+        testing : "androidx.room:room-testing:${versions.room}"
       ],
       work            : [
         runtime_ktx: 'androidx.work:work-runtime-ktx:2.7.0-alpha01'
+      ],
+      test            : [
+        runner: 'androidx.test:runner:1.3.0',
+        rules : 'androidx.test:rules:1.3.0',
       ]
     ],
     google  : [

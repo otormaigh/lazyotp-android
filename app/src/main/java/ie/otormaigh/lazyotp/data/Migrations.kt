@@ -1,11 +1,13 @@
 package ie.otormaigh.lazyotp.data
 
+import androidx.annotation.VisibleForTesting
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
 @Suppress("MemberVisibilityCanBePrivate")
 object Migrations {
-  val MIGRATION_1_2 = object : Migration(1, 2) {
+  @VisibleForTesting
+  val `1_2` = object : Migration(1, 2) {
     override fun migrate(database: SupportSQLiteDatabase) {
       database.execSQL(
         """
@@ -26,5 +28,5 @@ object Migrations {
     }
   }
 
-  val ALL = arrayOf(MIGRATION_1_2)
+  val ALL = arrayOf(`1_2`)
 }
