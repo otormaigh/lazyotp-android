@@ -16,7 +16,8 @@ class AddSmsProviderViewModel(private val database: LazySmsDatabase) : BaseViewM
   fun addProvider(sender: Editable?, digitCount: Editable?) {
     if (validateInput(sender, digitCount)) {
       launch {
-        database.smsCodeProviderDao().insert(SmsCodeProvider(sender.toString(), digitCount.toString().toInt()))
+        database.smsCodeProviderDao()
+          .insert(SmsCodeProvider(sender.toString(), digitCount.toString()))
         _stateMachine.postValue(AddSmsProviderState.Success)
       }
     }
@@ -25,7 +26,8 @@ class AddSmsProviderViewModel(private val database: LazySmsDatabase) : BaseViewM
   fun updateProvider(providerId: String, sender: Editable?, digitCount: Editable?) {
     if (validateInput(sender, digitCount)) {
       launch {
-        database.smsCodeProviderDao().upsert(providerId, SmsCodeProvider(sender.toString(), digitCount.toString().toInt()))
+        database.smsCodeProviderDao()
+          .upsert(providerId, SmsCodeProvider(sender.toString(), digitCount.toString()))
         _stateMachine.postValue(AddSmsProviderState.Success)
       }
     }

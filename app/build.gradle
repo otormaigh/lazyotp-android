@@ -99,7 +99,8 @@ dependencies {
   implementation deps.androidx.work.runtime_ktx
   implementation deps.androidx.room.core_ktx
   implementation deps.androidx.room.runtime
-  kapt deps.androidx.room.compiler
+    implementation 'androidx.sqlite:sqlite-ktx:2.1.0'
+    kapt deps.androidx.room.compiler
 
   implementation deps.square.retrofit.core
   implementation deps.square.okhttp.core

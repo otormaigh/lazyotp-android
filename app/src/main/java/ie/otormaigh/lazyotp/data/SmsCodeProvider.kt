@@ -8,7 +8,7 @@ import androidx.room.*
 data class SmsCodeProvider(
   @PrimaryKey
   val sender: String,
-  val codeLength: Int
+  val codeLength: String
 ) {
 
   companion object {
