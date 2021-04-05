@@ -73,8 +73,9 @@
       android:id="@+id/etDigitCount"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
+      android:digits="0123456789,"
       android:imeOptions="actionDone"
-      android:inputType="numberDecimal"
+      android:inputType="number"
       android:textColor="#FFF" />
   </com.google.android.material.textfield.TextInputLayout>
 

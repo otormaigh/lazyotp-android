@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
   entities = [
     SmsCodeProvider::class
   ],
-  version = 1
+  version = 2
 )
 abstract class LazySmsDatabase : RoomDatabase() {
   abstract fun smsCodeProviderDao(): SmsCodeproviderDao

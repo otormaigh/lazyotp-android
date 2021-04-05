@@ -13,6 +13,7 @@ import ie.otormaigh.lazyotp.toolbox.WorkScheduler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import kotlin.coroutines.CoroutineContext
 
 class SmsReceiver : BroadcastReceiver(), CoroutineScope {
@@ -30,7 +31,6 @@ class SmsReceiver : BroadcastReceiver(), CoroutineScope {
     val smsCodeProviders = context.app.database.smsCodeProviderDao().fetchAllAsync()
     Telephony.Sms.Intents.getMessagesFromIntent(intent).forEach { smsMessage ->
       smsCodeProviders.firstOrNull { it.sender == smsMessage.displayOriginatingAddress }?.let {
-
         WorkScheduler.oneTimeRequest<SlackPostWorker>(
           context,
           SlackPostWorker.smsCodeData(

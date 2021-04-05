@@ -26,6 +26,8 @@ android {
         arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
       }
     }
+
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
   }
 
   buildFeatures {
@@ -109,4 +111,8 @@ dependencies {
 
   testImplementation deps.junit
   testImplementation deps.square.assertj
+
+  androidTestImplementation deps.androidx.test.runner
+  androidTestImplementation deps.androidx.test.rules
+  androidTestImplementation deps.androidx.room.testing
 }

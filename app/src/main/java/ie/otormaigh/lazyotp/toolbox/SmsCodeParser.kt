@@ -1,7 +1,7 @@
 package ie.otormaigh.lazyotp.toolbox
 
 object SmsCodeParser {
-  fun parse(message: String, codeLength: Int): String {
+  fun parse(message: String, codeLength: String): String {
     val pattern = """\b[A-Z0-9]{codeLength}\b"""
       .replace("codeLength", codeLength.toString())
       .toPattern()

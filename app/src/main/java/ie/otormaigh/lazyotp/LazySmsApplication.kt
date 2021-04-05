@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import ie.otormaigh.lazyotp.data.LazySmsDatabase
+import ie.otormaigh.lazyotp.data.Migrations
 import ie.otormaigh.lazyotp.service.BatteryLevelService
 import ie.otormaigh.lazyotp.toolbox.batteryWarningEnabled
 import ie.otormaigh.lazyotp.toolbox.settingsPrefs
@@ -13,6 +14,7 @@ class LazySmsApplication : Application() {
   val database by lazy {
     Room.databaseBuilder(applicationContext, LazySmsDatabase::class.java, "lazy-sms.db")
       .allowMainThreadQueries()
+      .addMigrations(*Migrations.ALL)
       .apply { if (BuildConfig.DEBUG) fallbackToDestructiveMigration() }
       .build()
   }
