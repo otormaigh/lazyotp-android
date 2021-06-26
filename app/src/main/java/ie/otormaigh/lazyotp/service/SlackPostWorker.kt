@@ -11,23 +11,28 @@ import ie.otormaigh.lazyotp.toolbox.settingsPrefs
 import ie.otormaigh.lazyotp.toolbox.slackToken
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
+import timber.log.Timber
 
 class SlackPostWorker(context: Context, workerParams: WorkerParameters) :
   CoroutineWorker(context, workerParams) {
   private val deviceName by lazy { applicationContext.settingsPrefs.deviceName }
 
   override suspend fun doWork(): Result {
-    val message = when (inputData.getString(ARG_TYPE)) {
-      TYPE_SMS_CODE -> createSmsMessage()
-      TYPE_BATTERY_LEVEL -> createBatteryMessage()
-      else -> throw UnsupportedOperationException("{${inputData.getString(ARG_TYPE)} is not supported}")
-    }
+    try {
+      val message = when (inputData.getString(ARG_TYPE)) {
+        TYPE_SMS_CODE -> createSmsMessage()
+        TYPE_BATTERY_LEVEL -> createBatteryMessage()
+        else -> throw UnsupportedOperationException("{${inputData.getString(ARG_TYPE)} is not supported}")
+      }
 
-    Api.instance.postSmsCode(
-      message.toRequestBody("application/json".toMediaTypeOrNull()),
-      applicationContext.settingsPrefs.slackToken.takeIf { it.isNotEmpty() }
-        ?: BuildConfig.SLACK_TOKEN
-    )
+      Api.instance.postSmsCode(
+        message.toRequestBody("application/json".toMediaTypeOrNull()),
+        applicationContext.settingsPrefs.slackToken.takeIf { it.isNotEmpty() }
+          ?: BuildConfig.SLACK_TOKEN
+      )
+    } catch (e: Exception) {
+      Timber.e(e)
+    }
 
     return Result.success()
   }
