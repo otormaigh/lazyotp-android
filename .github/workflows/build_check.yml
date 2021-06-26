@@ -22,6 +22,7 @@ jobs:
         uses: actions/setup-java@v2.1.0
         with:
           java-version: 11
+          distribution: 'adopt'
 
       - name: Validate Gradle Wrapper
         uses: gradle/wrapper-validation-action@v1.0.4
@@ -44,6 +45,7 @@ jobs:
         uses: actions/setup-java@v2.1.0
         with:
           java-version: 11
+          distribution: 'adopt'
 
       - name: Quality checks
         run: ./gradlew lint --stacktrace --scan
@@ -64,6 +66,7 @@ jobs:
         uses: actions/setup-java@v2.1.0
         with:
           java-version: 11
+          distribution: 'adopt'
 
       - name: Unit Test
         run: ./gradlew test --stacktrace --scan
@@ -93,6 +96,7 @@ jobs:
         uses: actions/setup-java@v2.1.0
         with:
           java-version: 11
+          distribution: 'adopt'
 
       - name: Assemble Release
         run: ./gradlew clean assembleRelease --stacktrace --scan
