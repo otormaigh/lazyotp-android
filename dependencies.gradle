@@ -3,17 +3,17 @@ ext {
     compileSdk: 30,
     minSdk    : 21,
     targetSdk : 30,
-    kotlin    : "1.4.30",            // org.jetbrains.kotlin
-    coroutine : "1.4.2",             // org.jetbrains.kotlinx:kotlinx-coroutines
-    room      : "2.3.0-beta02",     // androidx.room
+    kotlin    : "1.5.20",            // org.jetbrains.kotlin
+    coroutine : "1.5.0",             // org.jetbrains.kotlinx:kotlinx-coroutines
+    room      : "2.4.0-alpha03",      // androidx.room
     okhttp    : "4.9.1",             // com.squareup.okhttp3
     retrofit  : "2.9.0",             // com.squareup.retrofit2
   ]
   deps = [
     androidx: [
-      appcompat       : 'androidx.appcompat:appcompat:1.3.0-beta01',
-      constraintlayout: 'androidx.constraintlayout:constraintlayout:2.1.0-alpha2',
-      core_ktx        : 'androidx.core:core-ktx:1.5.0-beta01',
+      appcompat       : 'androidx.appcompat:appcompat:1.4.0-alpha02',
+      constraintlayout: 'androidx.constraintlayout:constraintlayout:2.1.0-beta02',
+      core_ktx        : 'androidx.core:core-ktx:1.6.0-rc01',
       prefs           : 'androidx.preference:preference:1.1.1',
       room            : [
         compiler: "androidx.room:room-compiler:${versions.room}",
@@ -22,15 +22,15 @@ ext {
         testing : "androidx.room:room-testing:${versions.room}"
       ],
       work            : [
-        runtime_ktx: 'androidx.work:work-runtime-ktx:2.7.0-alpha01'
+        runtime_ktx: 'androidx.work:work-runtime-ktx:2.7.0-alpha04'
       ],
       test            : [
-        runner: 'androidx.test:runner:1.3.0',
-        rules : 'androidx.test:rules:1.3.0',
+        runner: 'androidx.test:runner:1.4.0-rc01',
+        rules : 'androidx.test:rules:1.4.0-rc01',
       ]
     ],
     google  : [
-      material: 'com.google.android.material:material:1.3.0'
+      material: 'com.google.android.material:material:1.4.0-rc01'
     ],
     junit   : 'junit:junit:4.13.2',
     kotlin  : [
