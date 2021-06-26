@@ -11,12 +11,7 @@ import ie.otormaigh.lazyotp.plugin.toolbox.Git
 object SemVer {
   private const val major = 0
   private const val minor = 3
-  private const val patch = 1
-  private val build: Int
-    get() = if (isCi) Integer.parseInt(System.getProperty("CIRCLE_BUILD_NUM"))
-    else 0
-  private val isCi: Boolean
-    get() = System.getProperty("CI").equals("true", true)
+  private const val patch = 2
 
   @JvmStatic
   val name: String
@@ -24,5 +19,5 @@ object SemVer {
 
   @JvmStatic
   val code: Int
-    get() = (major * 1_000_000 + minor * 1_000 + patch) + build
+    get() = (major * 1_000_000 + minor * 1_000 + patch)
 }
