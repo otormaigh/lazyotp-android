@@ -166,7 +166,7 @@ jobs:
           name: report-archive
       - name: Publish Unit Test Results
         if: always()
-        uses: EnricoMi/publish-unit-test-result-action@v1.17
+        uses: EnricoMi/publish-unit-test-result-action@v1.18
         with:
           commit: ${{ github.event.workflow_run.head_sha }}
           files: '**/build/test-results/**/TEST-*.xml'
