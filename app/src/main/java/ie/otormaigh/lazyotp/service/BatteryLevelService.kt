@@ -15,20 +15,14 @@ import androidx.core.app.NotificationCompat
 import ie.otormaigh.lazyotp.BuildConfig
 import ie.otormaigh.lazyotp.R
 import ie.otormaigh.lazyotp.feature.MainActivity
-import ie.otormaigh.lazyotp.toolbox.ForegroundServiceLauncher
-import ie.otormaigh.lazyotp.toolbox.WorkScheduler
-import ie.otormaigh.lazyotp.toolbox.batteryThreshold
-import ie.otormaigh.lazyotp.toolbox.settingsPrefs
+import ie.otormaigh.lazyotp.toolbox.*
 import timber.log.Timber
 
 class BatteryLevelService : Service() {
   private val batteryLevelReceiver = object : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
-      if (intent?.action != Intent.ACTION_BATTERY_CHANGED) return
-      val batteryLevel = intent.extras?.getInt(BatteryManager.EXTRA_LEVEL) ?: -1
-
-      if (batteryLevel > 0 && batteryLevel < application.settingsPrefs.batteryThreshold) {
-        Timber.e("BatteryLevelService : batteryLevel -> $batteryLevel")
+      if (canSendNotification(intent)) {
+        application.settingsPrefs.batteryWarningSent = true
 
         WorkScheduler.oneTimeRequest<SlackPostWorker>(
           applicationContext,
@@ -82,6 +76,29 @@ class BatteryLevelService : Service() {
     } catch (e: Exception) {
       Timber.e(e)
     }
+  }
+
+  private fun canSendNotification(intent: Intent?): Boolean {
+    // Wrong intent action
+    if (intent == null || intent.action != Intent.ACTION_BATTERY_CHANGED) return false
+
+    // Battery level above threshold
+    val batteryLevel = intent.extras?.getInt(BatteryManager.EXTRA_LEVEL) ?: -1
+    Timber.d("BatteryLevelService : batteryLevel -> $batteryLevel")
+    if (batteryLevel > application.settingsPrefs.batteryThreshold) return false
+
+    // Battery is charging
+    val pluggedInState = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1)
+    if (pluggedInState == BatteryManager.BATTERY_PLUGGED_AC || pluggedInState == BatteryManager.BATTERY_PLUGGED_USB || pluggedInState == BatteryManager.BATTERY_PLUGGED_WIRELESS) {
+      application.settingsPrefs.batteryWarningSent = false
+      return false
+    }
+
+    // Has already been sent
+    if (application.settingsPrefs.batteryWarningSent) return false
+
+    // Send it.
+    return true
   }
 
   companion object {
