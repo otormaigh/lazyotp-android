@@ -128,7 +128,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2.3.4
       - name: Download Archived binaries
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v2.0.10
         with:
           name: build-archive
       # Manually download from branch rather than using action/checkout step so that
@@ -161,7 +161,7 @@ jobs:
     steps:
       - name: Download Unit test results
         if: always()
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v2.0.10
         with:
           name: report-archive
       - name: Publish Unit Test Results
