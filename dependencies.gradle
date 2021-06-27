@@ -4,7 +4,7 @@ ext {
     minSdk    : 21,
     targetSdk : 30,
     kotlin    : "1.5.20",            // org.jetbrains.kotlin
-    coroutine : "1.5.0",             // org.jetbrains.kotlinx:kotlinx-coroutines
+    coroutine : "1.5.0-native-mt",             // org.jetbrains.kotlinx:kotlinx-coroutines
     room      : "2.4.0-alpha03",      // androidx.room
     okhttp    : "4.9.1",             // com.squareup.okhttp3
     retrofit  : "2.9.0",             // com.squareup.retrofit2
