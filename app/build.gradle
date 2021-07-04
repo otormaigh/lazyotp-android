@@ -65,14 +65,11 @@ android {
   buildTypes {
     debug {
       applicationIdSuffix ".debug"
+      signingConfig signingConfigs.debug
     }
 
     release {
-      if (file('../signing/release.keystore').exists()) {
-        signingConfig signingConfigs.release
-      } else {
-        signingConfig signingConfigs.debug
-      }
+      signingConfig signingConfigs.debug
       postprocessing {
         proguardFiles 'proguard-rules.pro'
         removeUnusedResources = true
