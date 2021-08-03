@@ -42,6 +42,7 @@ class SlackPostWorker(context: Context, workerParams: WorkerParameters) :
     val smsCode = inputData.getString(ARG_SMS_CODE)
     return """
         {
+          "text": "$smsCode",
           "attachments": [
             {
               "footer": "Version: ${BuildConfig.VERSION_NAME}",
