@@ -50,6 +50,6 @@ ext {
         core: "com.squareup.retrofit2:retrofit:${versions.retrofit}",
       ]
     ],
-    timber  : 'com.jakewharton.timber:timber:4.7.1'
+    timber  : 'com.jakewharton.timber:timber:5.0.1'
   ]
 }
