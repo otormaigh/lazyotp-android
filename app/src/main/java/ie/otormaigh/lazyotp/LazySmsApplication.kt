@@ -22,10 +22,12 @@ class LazySmsApplication : Application() {
   override fun onCreate() {
     super.onCreate()
 
-    Timber.plant(object : Timber.DebugTree() {
-      override fun createStackElementTag(element: StackTraceElement) =
-        "(${element.fileName}:${element.lineNumber})"
-    })
+    if (BuildConfig.DEBUG) {
+      Timber.plant(object : Timber.DebugTree() {
+        override fun createStackElementTag(element: StackTraceElement) =
+          "(${element.fileName}:${element.lineNumber})"
+      })
+    }
 
     if (settingsPrefs.batteryWarningEnabled) BatteryLevelService.start(this)
     else BatteryLevelService.stop(this)
