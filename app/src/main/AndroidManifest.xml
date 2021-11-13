@@ -17,6 +17,7 @@
     tools:ignore="GoogleAppIndexingWarning">
     <activity
       android:name="ie.otormaigh.lazyotp.feature.MainActivity"
+      android:exported="true"
       android:screenOrientation="fullSensor">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
@@ -29,7 +30,9 @@
       android:name="ie.otormaigh.lazyotp.feature.settings.SettingsActivity"
       android:screenOrientation="fullSensor" />
 
-    <receiver android:name="ie.otormaigh.lazyotp.service.SmsReceiver">
+    <receiver
+      android:name="ie.otormaigh.lazyotp.service.SmsReceiver"
+      android:exported="true">
       <intent-filter android:priority="1000">
         <action android:name="android.provider.Telephony.SMS_RECEIVED" />
       </intent-filter>
