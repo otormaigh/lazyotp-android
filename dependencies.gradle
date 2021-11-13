@@ -1,19 +1,19 @@
 ext {
   versions = [
-    compileSdk: 30,
+    compileSdk: 31,
     minSdk    : 21,
-    targetSdk : 30,
-    kotlin    : "1.5.20",            // org.jetbrains.kotlin
-    coroutine : "1.5.0",             // org.jetbrains.kotlinx:kotlinx-coroutines
-    room      : "2.4.0-alpha03",      // androidx.room
-    okhttp    : "4.9.1",             // com.squareup.okhttp3
+    targetSdk : 31,
+    kotlin    : "1.5.31",            // org.jetbrains.kotlin
+    coroutine : "1.5.2",             // org.jetbrains.kotlinx:kotlinx-coroutines
+    room      : "2.4.0-beta01",      // androidx.room
+    okhttp    : "4.9.2",             // com.squareup.okhttp3
     retrofit  : "2.9.0",             // com.squareup.retrofit2
   ]
   deps = [
     androidx: [
-      appcompat       : 'androidx.appcompat:appcompat:1.4.0-alpha02',
-      constraintlayout: 'androidx.constraintlayout:constraintlayout:2.1.0-beta02',
-      core_ktx        : 'androidx.core:core-ktx:1.6.0-rc01',
+      appcompat       : 'androidx.appcompat:appcompat:1.4.0-rc01',
+      constraintlayout: 'androidx.constraintlayout:constraintlayout:2.1.1',
+      core_ktx        : 'androidx.core:core-ktx:1.7.0',
       prefs           : 'androidx.preference:preference:1.1.1',
       room            : [
         compiler: "androidx.room:room-compiler:${versions.room}",
@@ -22,15 +22,15 @@ ext {
         testing : "androidx.room:room-testing:${versions.room}"
       ],
       work            : [
-        runtime_ktx: 'androidx.work:work-runtime-ktx:2.7.0-alpha04'
+        runtime_ktx: 'androidx.work:work-runtime-ktx:2.7.0'
       ],
       test            : [
-        runner: 'androidx.test:runner:1.4.0-rc01',
-        rules : 'androidx.test:rules:1.4.0-rc01',
+        runner: 'androidx.test:runner:1.4.0',
+        rules : 'androidx.test:rules:1.4.0',
       ]
     ],
     google  : [
-      material: 'com.google.android.material:material:1.4.0-rc01'
+      material: 'com.google.android.material:material:1.4.0'
     ],
     junit   : 'junit:junit:4.13.2',
     kotlin  : [
@@ -50,6 +50,6 @@ ext {
         core: "com.squareup.retrofit2:retrofit:${versions.retrofit}",
       ]
     ],
-    timber  : 'com.jakewharton.timber:timber:4.7.1'
+    timber  : 'com.jakewharton.timber:timber:5.0.1'
   ]
 }
