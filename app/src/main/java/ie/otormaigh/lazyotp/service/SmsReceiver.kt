@@ -20,6 +20,7 @@ class SmsReceiver : BroadcastReceiver(), CoroutineScope {
   override val coroutineContext: CoroutineContext get() = Job()
 
   override fun onReceive(context: Context, intent: Intent) {
+    Timber.d("onReceive")
     if (ContextCompat.checkSelfPermission(context, Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED) return
 
     if (intent.action == Telephony.Sms.Intents.SMS_RECEIVED_ACTION) {
@@ -28,8 +29,13 @@ class SmsReceiver : BroadcastReceiver(), CoroutineScope {
   }
 
   private suspend fun parseMessage(context: Context, intent: Intent) {
+    Timber.d("Parsing message")
+
     val smsCodeProviders = context.app.database.smsCodeProviderDao().fetchAllAsync()
     Telephony.Sms.Intents.getMessagesFromIntent(intent).forEach { smsMessage ->
+      Timber.d("SmsMessage -> ${smsMessage.messageBody}")
+      Timber.d("From -> ${smsMessage.displayOriginatingAddress}")
+
       smsCodeProviders.firstOrNull { it.sender == smsMessage.displayOriginatingAddress }?.let {
         WorkScheduler.oneTimeRequest<SlackPostWorker>(
           context,
