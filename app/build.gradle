@@ -106,8 +106,8 @@ dependencies {
 
   implementation deps.timber
 
+  testImplementation deps.google.truth
   testImplementation deps.junit
-  testImplementation deps.square.assertj
 
   androidTestImplementation deps.androidx.test.runner
   androidTestImplementation deps.androidx.test.rules
