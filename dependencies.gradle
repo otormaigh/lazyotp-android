@@ -22,7 +22,7 @@ ext {
         testing : "androidx.room:room-testing:${versions.room}"
       ],
       work            : [
-        runtime_ktx: 'androidx.work:work-runtime-ktx:2.7.0-alpha04'
+        runtime_ktx: 'androidx.work:work-runtime-ktx:2.7.1'
       ],
       test            : [
         runner: 'androidx.test:runner:1.4.0-rc01',
