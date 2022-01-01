@@ -19,7 +19,7 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
           restore-keys: ${{ runner.os }}-gradle-
       - name: Setup Java
-        uses: actions/setup-java@v2.1.0
+        uses: actions/setup-java@v2.5.0
         with:
           java-version: 11
           distribution: 'adopt'
@@ -42,7 +42,7 @@ jobs:
           key: check-gradle-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
           restore-keys: ${{ runner.os }}-gradle-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
       - name: Setup Java
-        uses: actions/setup-java@v2.1.0
+        uses: actions/setup-java@v2.5.0
         with:
           java-version: 11
           distribution: 'adopt'
@@ -63,7 +63,7 @@ jobs:
           key: test-gradle-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
           restore-keys: ${{ runner.os }}-gradle-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
       - name: Setup Java
-        uses: actions/setup-java@v2.1.0
+        uses: actions/setup-java@v2.5.0
         with:
           java-version: 11
           distribution: 'adopt'
@@ -93,7 +93,7 @@ jobs:
           key: build-gradle-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
           restore-keys: ${{ runner.os }}-gradle-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
       - name: Setup Java
-        uses: actions/setup-java@v2.1.0
+        uses: actions/setup-java@v2.5.0
         with:
           java-version: 11
           distribution: 'adopt'
