@@ -14,7 +14,7 @@ ext {
       appcompat       : 'androidx.appcompat:appcompat:1.4.0-alpha02',
       constraintlayout: 'androidx.constraintlayout:constraintlayout:2.1.0-beta02',
       core_ktx        : 'androidx.core:core-ktx:1.6.0-rc01',
-      prefs           : 'androidx.preference:preference:1.1.1',
+      prefs           : 'androidx.preference:preference:1.2.0',
       room            : [
         compiler: "androidx.room:room-compiler:${versions.room}",
         core_ktx: "androidx.room:room-ktx:${versions.room}",
