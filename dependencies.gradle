@@ -30,7 +30,7 @@ ext {
       ]
     ],
     google  : [
-      material: 'com.google.android.material:material:1.4.0-rc01'
+      material: 'com.google.android.material:material:1.6.0-alpha03'
     ],
     junit   : 'junit:junit:4.13.2',
     kotlin  : [
