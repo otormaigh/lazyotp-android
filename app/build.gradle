@@ -32,6 +32,7 @@ android {
 
   buildFeatures {
     viewBinding true
+    compose true
   }
 
   sourceSets {
@@ -45,6 +46,13 @@ android {
 
   kotlinOptions {
     jvmTarget = JavaVersion.VERSION_11
+
+    // ExperimentalMaterialApi
+    freeCompilerArgs += '-Xopt-in=kotlin.RequiresOptIn'
+  }
+
+  composeOptions {
+    kotlinCompilerExtensionVersion '1.2.0-alpha02'
   }
 
   signingConfigs {
@@ -99,6 +107,18 @@ dependencies {
   implementation deps.androidx.room.core_ktx
   implementation deps.androidx.room.runtime
   kapt deps.androidx.room.compiler
+
+  def compose_version = "1.2.0-alpha02"
+  implementation "androidx.compose.runtime:runtime:$compose_version"
+  implementation "androidx.compose.ui:ui:$compose_version"
+  implementation "androidx.compose.foundation:foundation-layout:$compose_version"
+  implementation "androidx.compose.material:material:$compose_version"
+  implementation "androidx.compose.material:material-icons-extended:$compose_version"
+  implementation "androidx.compose.foundation:foundation:$compose_version"
+  implementation "androidx.compose.animation:animation:$compose_version"
+  implementation "androidx.compose.ui:ui-tooling:$compose_version"
+  implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
+  implementation "androidx.activity:activity-compose:1.5.0-alpha01"
 
   implementation deps.square.retrofit.core
   implementation deps.square.okhttp.core

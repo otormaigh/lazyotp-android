@@ -14,11 +14,11 @@
     android:label="@string/app_name"
     android:supportsRtl="true"
     android:theme="@style/AppTheme"
-    tools:ignore="GoogleAppIndexingWarning">
+    tools:ignore="GoogleAppIndexingWarning,LockedOrientationActivity">
     <activity
-      android:name="ie.otormaigh.lazyotp.feature.MainActivity"
+      android:name="ie.otormaigh.lazyotp.feature.MainComposeActivity"
       android:exported="true"
-      android:screenOrientation="fullSensor">
+      android:screenOrientation="portrait">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
@@ -28,7 +28,7 @@
 
     <activity
       android:name="ie.otormaigh.lazyotp.feature.settings.SettingsActivity"
-      android:screenOrientation="fullSensor" />
+      android:screenOrientation="portrait" />
 
     <receiver
       android:name="ie.otormaigh.lazyotp.service.SmsReceiver"

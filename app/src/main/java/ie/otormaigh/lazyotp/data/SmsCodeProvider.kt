@@ -8,7 +8,7 @@ import androidx.room.*
 data class SmsCodeProvider(
   @PrimaryKey
   val sender: String,
-  val codeLength: String
+  val codeLength: String // FIXME: Change to Int
 ) {
 
   companion object {
@@ -40,7 +40,7 @@ interface SmsCodeproviderDao {
     SELECT * FROM sms_code_provider
   """
   )
-  suspend fun fetchAllAsync(): List<SmsCodeProvider>
+  fun fetchAllAsync(): List<SmsCodeProvider>
 
   @Transaction
   suspend fun upsert(providerId: String, newData: SmsCodeProvider) {

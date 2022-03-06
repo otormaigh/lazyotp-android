@@ -26,8 +26,7 @@
     android:layout_margin="16dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:srcCompat="@drawable/ic_add"
-    app:tint="@color/colorPrimary" />
+    app:srcCompat="@drawable/ic_add" />
 
   <com.google.android.material.textfield.TextInputLayout
     android:id="@+id/tilProvider"
