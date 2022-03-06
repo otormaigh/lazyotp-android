@@ -9,6 +9,10 @@ fun View.hideKeyboard() {
     ?.hideSoftInputFromWindow(windowToken, 0)
 }
 
+/**
+ * FIXME
+ * Deprecated -> Use showSoftInput(View, int) or hideSoftInputFromWindow(IBinder, int) explicitly instead.
+ */
 fun View.showKeyboard() {
   (context.getSystemService(Activity.INPUT_METHOD_SERVICE) as? InputMethodManager)
     ?.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
