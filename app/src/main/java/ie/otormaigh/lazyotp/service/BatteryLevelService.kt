@@ -3,6 +3,7 @@ package ie.otormaigh.lazyotp.service
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.app.PendingIntent.FLAG_IMMUTABLE
 import android.app.Service
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -41,7 +42,7 @@ class BatteryLevelService : Service() {
 
     val pendingIntent = PendingIntent.getActivity(
       this, 0,
-      notificationIntent, 0
+      notificationIntent, FLAG_IMMUTABLE
     )
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

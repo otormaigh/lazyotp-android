@@ -11,7 +11,7 @@ import ie.otormaigh.lazyotp.plugin.toolbox.Git
 object SemVer {
   private const val major = 0
   private const val minor = 4
-  private const val patch = 0
+  private const val patch = 1
 
   @JvmStatic
   val name: String
