@@ -115,6 +115,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
   }
 
   private fun processState(state: AddSmsProviderState) {
+    // FIXME: Non exhaustive 'when' statements on sealed class/interface will be prohibited in 1.7, add 'Default', 'Loading' branches or 'else' branch instead
     when (state) {
       is AddSmsProviderState.Fail.Sender -> binding.tilProvider.error = state.reason
       is AddSmsProviderState.Fail.DigitCount -> binding.tilDigitCount.error = state.reason
