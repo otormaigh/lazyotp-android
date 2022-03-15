@@ -21,7 +21,7 @@ ext {
         runtime : "androidx.room:room-runtime:${versions.room}",
         testing : "androidx.room:room-testing:${versions.room}"
       ],
-      viewmodel       : 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0-alpha03',
+      viewmodel       : 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0-alpha04',
       work            : [
         runtime_ktx: 'androidx.work:work-runtime-ktx:2.8.0-alpha01'
       ],
