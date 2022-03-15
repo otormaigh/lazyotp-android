@@ -6,7 +6,7 @@ ext {
     kotlin    : "1.6.10",            // org.jetbrains.kotlin
     coroutine : "1.6.0",             // org.jetbrains.kotlinx:kotlinx-coroutines
     room      : "2.5.0-alpha01",      // androidx.room
-    okhttp    : "5.0.0-alpha.5",             // com.squareup.okhttp3
+    okhttp    : "5.0.0-alpha.6",             // com.squareup.okhttp3
     retrofit  : "2.9.0",             // com.squareup.retrofit2
   ]
   deps = [
