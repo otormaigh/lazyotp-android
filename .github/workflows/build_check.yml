@@ -10,7 +10,7 @@ jobs:
   pre-build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v3.0.0
       - uses: actions/cache@v2.1.6
         with:
           path: |
@@ -33,7 +33,7 @@ jobs:
     needs: pre-build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v3.0.0
       - uses: actions/cache@v2.1.6
         with:
           path: |
@@ -54,7 +54,7 @@ jobs:
     needs: pre-build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v3.0.0
       - uses: actions/cache@v2.1.6
         with:
           path: |
@@ -84,7 +84,7 @@ jobs:
       - test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v3.0.0
       - uses: actions/cache@v2.1.6
         with:
           path: |
@@ -129,7 +129,7 @@ jobs:
       pull-requests: write
 
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v3.0.0
       - name: Download Archived binaries
         uses: actions/download-artifact@v2.0.9
         with:
