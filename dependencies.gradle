@@ -3,7 +3,7 @@ ext {
     compileSdk: 31,
     minSdk    : 21,
     targetSdk : 31,
-    kotlin    : "1.6.10",            // org.jetbrains.kotlin
+    kotlin    : "1.6.21",            // org.jetbrains.kotlin
     coroutine : "1.6.0",             // org.jetbrains.kotlinx:kotlinx-coroutines
     room      : "2.5.0-alpha01",      // androidx.room
     okhttp    : "5.0.0-alpha.5",             // com.squareup.okhttp3
