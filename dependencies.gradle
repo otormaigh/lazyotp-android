@@ -5,7 +5,7 @@ ext {
     targetSdk : 31,
     kotlin    : "1.6.10",            // org.jetbrains.kotlin
     coroutine : "1.6.0",             // org.jetbrains.kotlinx:kotlinx-coroutines
-    room      : "2.5.0-alpha01",      // androidx.room
+    room      : "2.5.0-alpha02",      // androidx.room
     okhttp    : "5.0.0-alpha.5",             // com.squareup.okhttp3
     retrofit  : "2.9.0",             // com.squareup.retrofit2
   ]
