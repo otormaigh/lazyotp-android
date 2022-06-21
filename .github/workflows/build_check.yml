@@ -10,8 +10,8 @@ jobs:
   pre-build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.4
-      - uses: actions/cache@v2.1.6
+      - uses: actions/checkout@v3.0.2
+      - uses: actions/cache@v3.0.4
         with:
           path: |
             ~/.gradle/caches
@@ -33,8 +33,8 @@ jobs:
     needs: pre-build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.4
-      - uses: actions/cache@v2.1.6
+      - uses: actions/checkout@v3.0.2
+      - uses: actions/cache@v3.0.4
         with:
           path: |
             ~/.gradle/caches
@@ -54,8 +54,8 @@ jobs:
     needs: pre-build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.4
-      - uses: actions/cache@v2.1.6
+      - uses: actions/checkout@v3.0.2
+      - uses: actions/cache@v3.0.4
         with:
           path: |
             ~/.gradle/caches
@@ -84,8 +84,8 @@ jobs:
       - test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.4
-      - uses: actions/cache@v2.1.6
+      - uses: actions/checkout@v3.0.2
+      - uses: actions/cache@v3.0.4
         with:
           path: |
             ~/.gradle/caches
@@ -129,9 +129,9 @@ jobs:
       pull-requests: write
 
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v3.0.2
       - name: Download Archived binaries
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v3.0.0
         with:
           name: build-archive
       # Manually download from branch rather than using action/checkout step so that
@@ -167,7 +167,7 @@ jobs:
     steps:
       - name: Download Unit test results
         if: always()
-        uses: actions/download-artifact@v2.0.9
+        uses: actions/download-artifact@v3.0.0
         with:
           name: report-archive
       - name: Publish Unit Test Results
