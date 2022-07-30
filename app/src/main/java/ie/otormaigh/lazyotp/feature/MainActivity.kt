@@ -74,8 +74,15 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
     }
     binding.fabAdd.setOnClickListener {
       if (binding.tilProvider.isVisible) {
-        if (binding.etProvider.tag == null) viewModel.addProvider(binding.etProvider.text, binding.etDigitCount.text)
-        else viewModel.updateProvider(binding.etProvider.tag.toString(), binding.etProvider.text, binding.etDigitCount.text)
+        if (binding.etProvider.tag == null) viewModel.addProvider(
+          binding.etProvider.text,
+          binding.etDigitCount.text
+        )
+        else viewModel.updateProvider(
+          binding.etProvider.tag.toString(),
+          binding.etProvider.text,
+          binding.etDigitCount.text
+        )
       } else {
         showInputConstraintSet.applyTo(binding.clMain)
         binding.tilProvider.requestFocus()
@@ -115,7 +122,6 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
   }
 
   private fun processState(state: AddSmsProviderState) {
-    // FIXME: Non exhaustive 'when' statements on sealed class/interface will be prohibited in 1.7, add 'Default', 'Loading' branches or 'else' branch instead
     when (state) {
       is AddSmsProviderState.Fail.Sender -> binding.tilProvider.error = state.reason
       is AddSmsProviderState.Fail.DigitCount -> binding.tilDigitCount.error = state.reason
@@ -127,6 +133,9 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         binding.etProvider.tag = null
         binding.etProvider.setText("")
         binding.etDigitCount.setText("")
+      }
+      else -> {
+        // FIXME: Non exhaustive 'when' statements on sealed class/interface will be prohibited in 1.7, add 'Default', 'Loading' branches or 'else' branch instead
       }
     }
   }
