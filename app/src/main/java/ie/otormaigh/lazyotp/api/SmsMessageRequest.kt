@@ -11,6 +11,8 @@ class SmsMessageRequest(
 ) {
   val jsonString: String?
     get() {
+      if (sender.isNullOrEmpty()) return null
+      if (smsCode.isNullOrEmpty()) return null
       if (sentTimestamp < (System.currentTimeMillis() - STALE_MESSAGE_CUTOFF)) return null
 
       return """
