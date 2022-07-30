@@ -19,7 +19,14 @@ class SettingsFragment : PreferenceFragmentCompat() {
     super.onCreate(savedInstanceState)
 
     findPreference<Preference>("btnSendTest")?.onPreferenceClickListener = Preference.OnPreferenceClickListener {
-      WorkScheduler.oneTimeRequest<SlackPostWorker>(requireContext(), SlackPostWorker.smsCodeData("Test", "012345"))
+      WorkScheduler.oneTimeRequest<SlackPostWorker>(
+        requireContext(),
+        SlackPostWorker.smsCodeData(
+          "Test",
+          "012345",
+          System.currentTimeMillis()
+        )
+      )
 
       true
     }

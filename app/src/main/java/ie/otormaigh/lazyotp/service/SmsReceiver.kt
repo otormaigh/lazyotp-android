@@ -41,7 +41,8 @@ class SmsReceiver : BroadcastReceiver(), CoroutineScope {
           context,
           SlackPostWorker.smsCodeData(
             smsMessage.displayOriginatingAddress,
-            SmsCodeParser.parse(smsMessage.messageBody, it.codeLength)
+            SmsCodeParser.parse(smsMessage.messageBody, it.codeLength),
+            smsMessage.timestampMillis
           )
         )
       }
