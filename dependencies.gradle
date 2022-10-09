@@ -27,7 +27,7 @@ ext {
       ],
       test            : [
         runner: 'androidx.test:runner:1.5.0-alpha04',
-        rules : 'androidx.test:rules:1.4.1-alpha07',
+        rules : 'androidx.test:rules:1.4.1-beta01',
       ]
     ],
     google  : [
