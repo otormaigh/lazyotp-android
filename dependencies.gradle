@@ -13,7 +13,7 @@ ext {
     androidx: [
       appcompat       : 'androidx.appcompat:appcompat:1.6.0-alpha05',
       constraintlayout: 'androidx.constraintlayout:constraintlayout:2.2.0-alpha03',
-      core_ktx        : 'androidx.core:core-ktx:1.9.0-alpha05',
+      core_ktx        : 'androidx.core:core-ktx:1.9.0',
       prefs           : 'androidx.preference:preference:1.2.0',
       room            : [
         compiler: "androidx.room:room-compiler:${versions.room}",
