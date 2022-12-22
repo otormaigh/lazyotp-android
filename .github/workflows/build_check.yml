@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.0.2
-      - uses: actions/cache@v3.0.5
+      - uses: actions/cache@v3.2.0
         with:
           path: |
             ~/.gradle/caches
@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.0.2
-      - uses: actions/cache@v3.0.5
+      - uses: actions/cache@v3.2.0
         with:
           path: |
             ~/.gradle/caches
@@ -55,7 +55,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.0.2
-      - uses: actions/cache@v3.0.5
+      - uses: actions/cache@v3.2.0
         with:
           path: |
             ~/.gradle/caches
@@ -85,7 +85,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.0.2
-      - uses: actions/cache@v3.0.5
+      - uses: actions/cache@v3.2.0
         with:
           path: |
             ~/.gradle/caches
