@@ -26,7 +26,7 @@ ext {
         runtime_ktx: 'androidx.work:work-runtime-ktx:2.8.0-alpha02'
       ],
       test            : [
-        runner: 'androidx.test:runner:1.5.0-alpha04',
+        runner: 'androidx.test:runner:1.5.3-alpha01',
         rules : 'androidx.test:rules:1.4.1-alpha07',
       ]
     ],
