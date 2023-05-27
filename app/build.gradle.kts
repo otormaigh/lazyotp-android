@@ -44,6 +44,11 @@ android {
     jvmTarget = JavaVersion.VERSION_17.toString()
   }
 
+  lint {
+    error += "MissingTranslation"
+    error += "HardcodedText"
+  }
+
   signingConfigs {
     named("debug").configure {
       storeFile = file("../signing/debug.keystore")
