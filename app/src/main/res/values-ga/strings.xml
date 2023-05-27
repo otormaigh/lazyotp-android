@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="format.digit_count">%s dígit</string>
+
+  <string name="notif.content_text">Ná bí buartha, téigh agus tóg sos codlata, beidh mé ag faire amach do chóidí OTP.</string>
+
+  <string name="title.add_provider.add">Cuir Seoltóir Leis</string>
+  <string name="title.add_provider.update">Nuashonraigh Seoltóir</string>
+  <string name="title.settings">Socruithe</string>
+
+  <string name="unknown">Anaithnid</string>
+  <string name="empty">Folamh</string>
+  <string name="slack_token_empty">Earráid: Tógun Slack Folamh!</string>
+
+  <string name="message">Teachtaireacht</string>
+  <string name="sender">Seoltóir</string>
+  <string name="sender_name">Ainm an Seoltóra</string>
+  <string name="digits">Dígit</string>
+  <string name="save">Sábháil</string>
+
+  <string name="settings.slack_token">Tógun Slack</string>
+  <string name="settings.device_name">Ainm na Gléas</string>
+  <string name="settings.send_test_message">Cuir Teist Teachtaireachta</string>
+  <string name="settings.enable_warning">Cumasaigh Rabhadh</string>
+  <string name="settings.percent_threshold">Céatadán dreise</string>
+  <string name="settings.app_version">Leagan na Foirne</string>
+</resources>

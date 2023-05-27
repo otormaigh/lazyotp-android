@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="format.digit_count">%s Ziffern</string>
+
+  <string name="notif.content_text">Keine Sorge, geh schlafen, ich behalte die OTP-Codes im Auge.</string>
+
+  <string name="title.add_provider.add">Absender hinzufügen</string>
+  <string name="title.add_provider.update">Absender aktualisieren</string>
+  <string name="title.settings">Einstellungen</string>
+
+  <string name="unknown">Unbekannt</string>
+  <string name="empty">Leer</string>
+  <string name="slack_token_empty">Fehler: Slack-Token ist leer!</string>
+
+  <string name="message">Nachricht</string>
+  <string name="sender">Absender</string>
+  <string name="sender_name">Absendername</string>
+  <string name="digits">Ziffern</string>
+  <string name="save">Speichern</string>
+
+  <string name="settings.slack_token">Token Slack</string>
+  <string name="settings.device_name">Name des Geräts</string>
+  <string name="settings.send_test_message">Testnachricht senden</string>
+  <string name="settings.enable_warning">Warnung aktivieren</string>
+  <string name="settings.percent_threshold">Prozentschwelle</string>
+  <string name="settings.app_version">App-Version</string>
+</resources>

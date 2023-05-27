@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <string name="format.digit_count">%s chiffres</string>
+
+  <string name="notif.content_text">Ne t\'inquiète pas, va faire une sieste, je vais surveiller les codes OTP.</string>
+
+  <string name="title.add_provider.add">Ajouter un Expéditeur</string>
+  <string name="title.add_provider.update">Mettre à jour l\'Expéditeur</string>
+  <string name="title.settings">Paramètres</string>
+
+  <string name="unknown">Inconnu</string>
+  <string name="empty">Vide</string>
+  <string name="slack_token_empty">Erreur : Token Slack vide !</string>
+
+  <string name="message">Message</string>
+  <string name="sender">Expéditeur</string>
+  <string name="sender_name">Nom de l\'Expéditeur</string>
+  <string name="digits">Chiffres</string>
+  <string name="save">Enregistrer</string>
+
+  <string name="settings.slack_token">Token Slack</string>
+  <string name="settings.device_name">Nom du Dispositif</string>
+  <string name="settings.send_test_message">Envoyer un Message de Test</string>
+  <string name="settings.enable_warning">Activer l\'Avertissement</string>
+  <string name="settings.percent_threshold">Seuil en pourcentage</string>
+  <string name="settings.app_version">Version de l\'Application</string>
+</resources>
