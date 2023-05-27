@@ -25,4 +25,7 @@
   <string name="settings.enable_warning">Enable Warning</string>
   <string name="settings.percent_threshold">Percent threshold</string>
   <string name="settings.app_version">App Version</string>
+
+  <string name="content_desc.success_smiley_face">An image depicting a smiling face with a wide grin, conveying a sense of success and achievement. The code was received</string>
+  <string name="content_desc.fail_frowny_face">An image depicting a frowning face with a downturned mouth, conveying a sense of failure or disappointment. The code was not received.</string>
 </resources>

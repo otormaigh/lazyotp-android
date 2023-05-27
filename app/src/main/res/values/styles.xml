@@ -1,13 +1,4 @@
 <resources>
-
-  <style name="AppTheme" parent="Theme.MaterialComponents.Bridge">
-    <item name="colorPrimary">@color/colorPrimary</item>
-    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-    <item name="colorSecondary">@color/colorSecondary</item>
-    <item name="colorAccent">@color/colorAccent</item>
-    <item name="android:windowBackground">@color/window_background</item>
-  </style>
-
   <style name="Button" parent="@style/AppTheme">
     <item name="cornerRadius">8dp</item>
     <item name="android:textAllCaps">true</item>

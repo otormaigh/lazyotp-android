@@ -23,7 +23,7 @@ android {
     versionCode = SemVer.code
     versionName = SemVer.name
     base.archivesName.set("lazyotp-$versionName")
-    resourceConfigurations += listOf("en", "ga", "it", "es", "fr", "de", "pt")
+    resourceConfigurations += listOf("en", "ga", "it", "es", "fr", "de")
   }
 
   sourceSets {

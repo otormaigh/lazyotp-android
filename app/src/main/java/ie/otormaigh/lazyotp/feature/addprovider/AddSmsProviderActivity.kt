@@ -17,10 +17,11 @@ import androidx.core.widget.addTextChangedListener
 import dagger.hilt.android.AndroidEntryPoint
 import ie.otormaigh.lazyotp.R
 import ie.otormaigh.lazyotp.data.SmsProviderStore
-import ie.otormaigh.lazyotp.databinding.ActivityMessageDebugHelperBinding
+import ie.otormaigh.lazyotp.databinding.ActivityAddProviderBinding
 import ie.otormaigh.lazyotp.toolbox.SmsCodeParser
 import ie.otormaigh.lazyotp.toolbox.extension.clear
 import ie.otormaigh.lazyotp.toolbox.extension.clearError
+import ie.otormaigh.lazyotp.toolbox.extension.setContentDescription
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -28,7 +29,7 @@ class AddSmsProviderActivity : AppCompatActivity() {
   @Inject
   lateinit var smsProviderStore: SmsProviderStore
 
-  private lateinit var binding: ActivityMessageDebugHelperBinding
+  private lateinit var binding: ActivityAddProviderBinding
   private val viewModel: AddSmsProviderViewModel by viewModels()
 
   private val senderArg: String by lazy { intent.getStringExtra(ARG_SENDER) ?: "" }
@@ -69,7 +70,7 @@ class AddSmsProviderActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    binding = ActivityMessageDebugHelperBinding.inflate(layoutInflater)
+    binding = ActivityAddProviderBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
     setupUI()
@@ -118,7 +119,12 @@ class AddSmsProviderActivity : AppCompatActivity() {
     })
     etDigitCount.setText(digitCountArg)
     etDigitCount.setOnEditorActionListener { _, actionId, _ ->
-      if (actionId == EditorInfo.IME_ACTION_DONE) saveInput()
+      if (actionId == EditorInfo.IME_ACTION_DONE) {
+        tilProvider.clearFocus()
+        etProvider.clearFocus()
+        tilDigitCount.clearFocus()
+        etDigitCount.clearFocus()
+      }
 
       false
     }
@@ -145,11 +151,13 @@ class AddSmsProviderActivity : AppCompatActivity() {
 
   private fun showParseSuccess(code: String): Unit = with(binding) {
     ivSuccessFail.setImageResource(R.drawable.ic_success)
+    ivSuccessFail.setContentDescription(R.string.content_desc_success_smiley_face)
     tvCode.text = code
   }
 
   private fun showParseFail(): Unit = with(binding) {
     ivSuccessFail.setImageResource(R.drawable.ic_failure)
+    ivSuccessFail.setContentDescription(R.string.content_desc_fail_frowny_face)
     tvCode.clear()
   }
 

@@ -24,4 +24,7 @@
   <string name="settings.enable_warning">Habilitar Advertencia</string>
   <string name="settings.percent_threshold">Umbral de Porcentaje</string>
   <string name="settings.app_version">Versión de la Aplicación</string>
+
+  <string name="content_desc.fail_frowny_face">Una imagen que representa una cara fruncida con la boca hacia abajo, transmitiendo una sensación de fracaso o decepción. El código no ha sido recibido.</string>
+  <string name="content_desc.success_smiley_face">Una imagen que representa una cara sonriente con una amplia sonrisa, transmitiendo una sensación de éxito y logro. El código ha sido recibido.</string>
 </resources>

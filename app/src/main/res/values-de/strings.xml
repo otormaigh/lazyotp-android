@@ -24,4 +24,8 @@
   <string name="settings.enable_warning">Warnung aktivieren</string>
   <string name="settings.percent_threshold">Prozentschwelle</string>
   <string name="settings.app_version">App-Version</string>
+
+  <string name="content_desc.fail_frowny_face">Ein Bild, das ein Gesicht mit zusammengezogenen Augenbrauen und einem nach unten gerichteten Mund darstellt und ein Gefühl von Misserfolg oder Enttäuschung vermittelt. Der Code wurde nicht empfangen.</string>
+  <string name="content_desc.success_smiley_face">Ein Bild, das ein lächelndes Gesicht mit einem breiten Grinsen darstellt und ein Gefühl von Erfolg und Leistung vermittelt. Der Code wurde empfangen.</string>
+
 </resources>

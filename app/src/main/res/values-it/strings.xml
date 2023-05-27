@@ -24,5 +24,8 @@
   <string name="settings.enable_warning">Abbilite avertenza</string>
   <string name="settings.percent_threshold">Sfiezza percentuale</string>
   <string name="settings.app_version">Versione App</string>
+
+  <string name="content_desc.fail_frowny_face">Na faccia che sbotto cu \'nu sorriso all\'inghiottio, ca trasmette \'a sensazione \'e fialurie o dètiene. Nòn è state ricevuta \'a codice.</string>
+  <string name="content_desc.success_smiley_face">Na faccia chiagne cu \'nu riso amplo, ca trasmette \'a sensazione \'e successo e acconchiamento. È state ricevuta \'a codice.</string>
 </resources>
 
