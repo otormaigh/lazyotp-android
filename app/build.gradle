@@ -1,8 +1,13 @@
 import ie.otormaigh.lazyotp.plugin.SemVer
 
+plugins {
+  id "app.cash.sqldelight" version "2.0.0-alpha05"
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.dagger.hilt.android'
 
 if (file('../enc.properties').exists()) {
   apply from: '../enc.properties'
@@ -19,25 +24,15 @@ android {
     versionCode SemVer.code
     versionName SemVer.name
     archivesBaseName = "lazyotp-$versionName"
-
-    buildConfigField "String", "SLACK_TOKEN", project.properties["slack_token"]
-
-    javaCompileOptions {
-      annotationProcessorOptions {
-        arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
-      }
-    }
-
-    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    resConfigs "en", "ga", "it", "es", "fr", "de", "pt"
+    resourceConfigurations += ["en", "ga", "it", "es", "fr", "de", "pt"]
   }
+
+  sourceSets.main.java.srcDirs += ['src/main/sqldelight']
 
   buildFeatures {
     buildConfig true
     viewBinding true
-  }
-
-  sourceSets {
-    androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
   }
 
   compileOptions {
@@ -87,6 +82,16 @@ android {
   }
 }
 
+sqldelight {
+  databases {
+    LazyOtpDatabase {
+      packageName = "ie.otormaigh.lazyotp"
+      schemaOutputDirectory = file("src/main/sqldelight/ie/otormaigh/lazyotp/databases")
+      verifyMigrations = true
+    }
+  }
+}
+
 dependencies {
   implementation deps.kotlin.stdlib
   implementation deps.kotlin.coroutine.core
@@ -97,22 +102,22 @@ dependencies {
   implementation deps.androidx.core_ktx
   implementation deps.androidx.constraintlayout
   implementation deps.androidx.prefs
-  implementation deps.androidx.room.core_ktx
-  implementation deps.androidx.room.runtime
-  kapt deps.androidx.room.compiler
   implementation deps.androidx.viewmodel
   implementation deps.androidx.work.runtime_ktx
 
   implementation deps.square.retrofit.core
   implementation deps.square.okhttp.core
   implementation deps.square.okhttp.logging
+  implementation deps.cashapp.sqldelight.android_driver
+
+  implementation deps.google.hilt.core
+  kapt deps.google.hilt.compiler
 
   implementation deps.timber
 
   testImplementation deps.google.truth
   testImplementation deps.junit
-
-  androidTestImplementation deps.androidx.test.runner
-  androidTestImplementation deps.androidx.test.rules
-  androidTestImplementation deps.androidx.room.testing
+  testImplementation "io.mockk:mockk:1.13.5"
 }
+
+tasks.getByName("preBuild").dependsOn(":app:generateSqlDelightInterface")

@@ -8,6 +8,8 @@ ext {
     room      : "2.6.0-alpha01",      // androidx.room
     okhttp    : "5.0.0-alpha.11",             // com.squareup.okhttp3
     retrofit  : "2.9.0",             // com.squareup.retrofit2
+    hilt  : "2.46.1",
+    sqldelight  : "2.0.0-alpha05",
   ]
   deps = [
     androidx: [
@@ -30,9 +32,18 @@ ext {
         rules : 'androidx.test:rules:1.6.0-alpha01',
       ]
     ],
+    cashapp :[
+      sqldelight:[
+        android_driver :"app.cash.sqldelight:android-driver:${versions.sqldelight}"
+      ]
+    ],
     google  : [
       material: 'com.google.android.material:material:1.7.0-alpha03',
-      truth   : 'com.google.truth:truth:1.1.3'
+      truth   : 'com.google.truth:truth:1.1.3',
+      hilt:[
+        core: "com.google.dagger:hilt-android:${versions.hilt}",
+        compiler: "com.google.dagger:hilt-compiler:${versions.hilt}"
+      ]
     ],
     junit   : 'junit:junit:4.13.2',
     kotlin  : [
