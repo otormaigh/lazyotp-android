@@ -3,6 +3,7 @@ package ie.otormaigh.lazyotp.feature.settings
 import android.os.Bundle
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import ie.otormaigh.lazyotp.BuildConfig
 import ie.otormaigh.lazyotp.R
 import ie.otormaigh.lazyotp.service.BatteryLevelService
 import ie.otormaigh.lazyotp.service.SlackPostWorker
@@ -42,5 +43,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
       true
     }
+
+    findPreference<Preference>("tvAppVersion")?.summary = BuildConfig.VERSION_NAME
   }
 }
