@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/clMain"
@@ -11,72 +11,16 @@
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/rvSmsProvider"
     android:layout_width="match_parent"
-    android:layout_height="0dp"
+    android:layout_height="match_parent"
     android:overScrollMode="never"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/tilProvider"
-    app:layout_constraintVertical_bias="1" />
+    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
   <com.google.android.material.floatingactionbutton.FloatingActionButton
     android:id="@+id/fabAdd"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_gravity="bottom|end"
     android:layout_margin="16dp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:srcCompat="@drawable/ic_add"
-    app:tint="@color/colorPrimary" />
-
-  <com.google.android.material.textfield.TextInputLayout
-    android:id="@+id/tilProvider"
-    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
-    android:layout_marginTop="16dp"
-    android:layout_marginEnd="16dp"
-    android:layout_marginBottom="16dp"
-    android:hint="Sender name"
-    android:visibility="gone"
-    app:layout_constraintEnd_toStartOf="@id/tilDigitCount"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintWidth_percent="0.7"
-    tools:visibility="visible">
-
-    <com.google.android.material.textfield.TextInputEditText
-      android:id="@+id/etProvider"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:imeOptions="actionNext"
-      android:inputType="text"
-      android:lines="1"
-      android:textColor="#FFF" />
-  </com.google.android.material.textfield.TextInputLayout>
-
-  <com.google.android.material.textfield.TextInputLayout
-    android:id="@+id/tilDigitCount"
-    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_marginEnd="16dp"
-    android:hint="Digits"
-    android:visibility="gone"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toEndOf="@id/tilProvider"
-    app:layout_constraintTop_toTopOf="@id/tilProvider"
-    tools:visibility="visible">
-
-    <com.google.android.material.textfield.TextInputEditText
-      android:id="@+id/etDigitCount"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:digits="0123456789,"
-      android:imeOptions="actionDone"
-      android:inputType="number"
-      android:textColor="#FFF" />
-  </com.google.android.material.textfield.TextInputLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    app:backgroundTint="@color/colorPrimary"
+    app:srcCompat="@drawable/ic_add" />
+</FrameLayout>

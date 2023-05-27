@@ -1,24 +1,14 @@
 package ie.otormaigh.lazyotp
 
 import android.app.Application
-import android.content.Context
-import androidx.room.Room
-import ie.otormaigh.lazyotp.data.LazySmsDatabase
-import ie.otormaigh.lazyotp.data.Migrations
+import dagger.hilt.android.HiltAndroidApp
 import ie.otormaigh.lazyotp.service.BatteryLevelService
 import ie.otormaigh.lazyotp.toolbox.batteryWarningEnabled
 import ie.otormaigh.lazyotp.toolbox.settingsPrefs
 import timber.log.Timber
 
+@HiltAndroidApp
 class LazySmsApplication : Application() {
-  val database by lazy {
-    Room.databaseBuilder(applicationContext, LazySmsDatabase::class.java, "lazy-sms.db")
-      .allowMainThreadQueries()
-      .addMigrations(*Migrations.ALL)
-      .apply { if (BuildConfig.DEBUG) fallbackToDestructiveMigration() }
-      .build()
-  }
-
   override fun onCreate() {
     super.onCreate()
 
@@ -33,6 +23,3 @@ class LazySmsApplication : Application() {
     else BatteryLevelService.stop(this)
   }
 }
-
-val Context.app: LazySmsApplication
-  get() = applicationContext as LazySmsApplication

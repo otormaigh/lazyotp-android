@@ -2,15 +2,16 @@ package ie.otormaigh.lazyotp.feature
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ie.otormaigh.lazyotp.R
-import ie.otormaigh.lazyotp.data.SmsCodeProvider
+import ie.otormaigh.lazyotp.SmsCodeProvider
 import ie.otormaigh.lazyotp.databinding.ListItemSmsProviderBinding
 import ie.otormaigh.lazyotp.toolbox.extension.getString
 
 class SmsProviderRecyclerAdapter(private val clickListener: (provider: SmsCodeProvider) -> Unit) :
-  ListAdapter<SmsCodeProvider, SmsProviderRecyclerAdapter.ViewHolder>(SmsCodeProvider.diffUtil) {
+  ListAdapter<SmsCodeProvider, SmsProviderRecyclerAdapter.ViewHolder>(DIFF_UTIL) {
   private lateinit var binding: ListItemSmsProviderBinding
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,4 +33,12 @@ class SmsProviderRecyclerAdapter(private val clickListener: (provider: SmsCodePr
       }
     }
   }
+}
+
+private val DIFF_UTIL = object : DiffUtil.ItemCallback<SmsCodeProvider>() {
+  override fun areItemsTheSame(oldItem: SmsCodeProvider, newItem: SmsCodeProvider): Boolean =
+    oldItem.sender == newItem.sender && oldItem.codeLength == newItem.codeLength
+
+  override fun areContentsTheSame(oldItem: SmsCodeProvider, newItem: SmsCodeProvider): Boolean =
+    oldItem.sender == newItem.sender && oldItem.codeLength == newItem.codeLength
 }
