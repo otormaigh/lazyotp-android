@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="format.digit_count">%s dígitos</string>
+
+  <string name="notif.content_text">No te preocupes, ve a tomar una siesta, estaré atento a cualquier código OTP.</string>
+
+  <string name="title.add_provider.add">Agregar Remitente</string>
+  <string name="title.add_provider.update">Actualizar Remitente</string>
+  <string name="title.settings">Configuración</string>
+
+  <string name="unknown">Desconocido</string>
+  <string name="empty">Vacío</string>
+  <string name="slack_token_empty">¡Error: Token de Slack Vacío!</string>
+
+  <string name="message">Mensaje</string>
+  <string name="sender">Remitente</string>
+  <string name="sender_name">Nombre del Remitente</string>
+  <string name="digits">Dígitos</string>
+  <string name="save">Guardar</string>
+
+  <string name="settings.slack_token">Token de Slack</string>
+  <string name="settings.device_name">Nombre del Dispositivo</string>
+  <string name="settings.send_test_message">Enviar Mensaje de Prueba</string>
+  <string name="settings.enable_warning">Habilitar Advertencia</string>
+  <string name="settings.percent_threshold">Umbral de Porcentaje</string>
+  <string name="settings.app_version">Versión de la Aplicación</string>
+</resources>
