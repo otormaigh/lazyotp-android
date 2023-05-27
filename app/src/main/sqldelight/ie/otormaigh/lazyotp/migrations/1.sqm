@@ -1,8 +1,3 @@
-CREATE TABLE sms_code_provider(
-  sender INTEGER PRIMARY KEY NOT NULL,
-  codeLength TEXT NOT NULL
-);
-
 CREATE TABLE sms_code_provider_backup(
   sender TEXT PRIMARY KEY NOT NULL,
   codeLength TEXT NOT NULL
