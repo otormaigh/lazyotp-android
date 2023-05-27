@@ -31,4 +31,10 @@
     android:icon="@drawable/ic_message"
     android:key="btnSendTest"
     android:title="Send Test Message" />
+
+  <Preference
+    android:key="tvAppVersion"
+    android:selectable="false"
+    android:title="App Version"
+    app:allowDividerAbove="true" />
 </PreferenceScreen>
