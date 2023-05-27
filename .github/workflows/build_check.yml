@@ -47,6 +47,8 @@ jobs:
           java-version: 17
           distribution: 'adopt'
 
+      - name: Verify database schema + migration
+        run: sh scripts/verify_database_schema_and_migration.sh
       - name: Quality checks
         run: ./gradlew lint --stacktrace --scan
 
