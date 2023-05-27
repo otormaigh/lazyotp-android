@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.Data
 import androidx.work.WorkerParameters
-import ie.otormaigh.lazyotp.BuildConfig
 import ie.otormaigh.lazyotp.api.Api
 import ie.otormaigh.lazyotp.api.BatteryMessageRequest
 import ie.otormaigh.lazyotp.api.SmsMessageRequest
@@ -38,10 +37,11 @@ class SlackPostWorker(context: Context, workerParams: WorkerParameters) :
   }
 
   private suspend fun sendMessage(message: String) {
+    val slackToken = applicationContext.settingsPrefs.slackToken.takeIf { it.isNotEmpty() } ?: return
+
     Api.instance.postSmsCode(
       message.toRequestBody("application/json".toMediaTypeOrNull()),
-      applicationContext.settingsPrefs.slackToken.takeIf { it.isNotEmpty() }
-        ?: BuildConfig.SLACK_TOKEN
+      slackToken
     )
   }
 
