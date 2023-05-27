@@ -1,7 +1,31 @@
 <resources>
-  <string name="app_name">Lazy OTP</string>
+  <string name="app_name" translatable="false">Lazy OTP</string>
 
   <string name="format.digit_count">%s digits</string>
 
   <string name="notif.content_text">Don\'t worry, go take a nap, I\'ll keep an eye out for any OTP codes.</string>
+
+  <string name="title.add_provider.add">Add Sender</string>
+  <string name="title.add_provider.update">Update Sender</string>
+  <string name="title.settings">Settings</string>
+
+  <string name="unknown">Unknown</string>
+  <string name="empty">Empty</string>
+  <string name="slack_token_empty">Error: Slack Token Empty!</string>
+
+  <string name="message">Message</string>
+  <string name="sender">Sender</string>
+  <string name="sender_name">Sender name</string>
+  <string name="digits">Digits</string>
+  <string name="save">Save</string>
+
+  <string name="settings.slack_token">Slack Token</string>
+  <string name="settings.device_name">Device Name</string>
+  <string name="settings.send_test_message">Send Test Message</string>
+  <string name="settings.enable_warning">Enable Warning</string>
+  <string name="settings.percent_threshold">Percent threshold</string>
+  <string name="settings.app_version">App Version</string>
+
+  <string name="content_desc.success_smiley_face">An image depicting a smiling face with a wide grin, conveying a sense of success and achievement. The code was received</string>
+  <string name="content_desc.fail_frowny_face">An image depicting a frowning face with a downturned mouth, conveying a sense of failure or disappointment. The code was not received.</string>
 </resources>

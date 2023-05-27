@@ -3,31 +3,27 @@ package ie.otormaigh.lazyotp.feature.addprovider
 import android.text.Editable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import ie.otormaigh.lazyotp.arch.BaseViewModel
-import ie.otormaigh.lazyotp.data.LazySmsDatabase
-import ie.otormaigh.lazyotp.data.SmsCodeProvider
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import ie.otormaigh.lazyotp.R
+import ie.otormaigh.lazyotp.SmsCodeProvider
+import ie.otormaigh.lazyotp.data.SmsProviderStore
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AddSmsProviderViewModel(private val database: LazySmsDatabase) : BaseViewModel() {
+@HiltViewModel
+class AddSmsProviderViewModel @Inject constructor(
+  private val smsProviderStore: SmsProviderStore
+) : ViewModel() {
   private val _stateMachine = MutableLiveData<AddSmsProviderState>()
   val stateMachine: LiveData<AddSmsProviderState>
     get() = _stateMachine
 
-  fun addProvider(sender: Editable?, digitCount: Editable?) {
+  fun upsertProvider(providerId: String, sender: Editable?, digitCount: Editable?) {
     if (validateInput(sender, digitCount)) {
-      launch {
-        database.smsCodeProviderDao()
-          .insert(SmsCodeProvider(sender.toString(), digitCount.toString()))
-        _stateMachine.postValue(AddSmsProviderState.Success)
-      }
-    }
-  }
-
-  fun updateProvider(providerId: String, sender: Editable?, digitCount: Editable?) {
-    if (validateInput(sender, digitCount)) {
-      launch {
-        database.smsCodeProviderDao()
-          .upsert(providerId, SmsCodeProvider(sender.toString(), digitCount.toString()))
+      viewModelScope.launch {
+        smsProviderStore.upsertProvider(providerId, SmsCodeProvider(sender.toString(), digitCount.toString()))
         _stateMachine.postValue(AddSmsProviderState.Success)
       }
     }
@@ -35,8 +31,8 @@ class AddSmsProviderViewModel(private val database: LazySmsDatabase) : BaseViewM
 
   private fun validateInput(sender: Editable?, digitCount: Editable?): Boolean {
     when {
-      sender.isNullOrEmpty() -> _stateMachine.postValue(AddSmsProviderState.Fail.Sender("Empty"))
-      digitCount.isNullOrEmpty() -> _stateMachine.postValue(AddSmsProviderState.Fail.DigitCount("Empty"))
+      sender.isNullOrEmpty() -> _stateMachine.postValue(AddSmsProviderState.Fail.Sender(R.string.empty))
+      digitCount.isNullOrEmpty() -> _stateMachine.postValue(AddSmsProviderState.Fail.DigitCount(R.string.empty))
       else -> return true
     }
     return false

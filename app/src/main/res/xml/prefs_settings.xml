@@ -1,34 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto">
-  <EditTextPreference
-    android:icon="@drawable/ic_slack"
-    android:key="key_slack_token"
-    android:summary="This is the Slack Token"
-    android:title="Slack Token" />
 
-  <EditTextPreference
-    android:icon="@drawable/ic_device_name"
-    android:key="key_device_name"
-    android:summary="The name of the device"
-    android:title="Device Name" />
+  <PreferenceCategory
+    android:title="Slack"
+    app:iconSpaceReserved="false">
+    <EditTextPreference
+      android:icon="@drawable/ic_slack"
+      android:key="key_slack_token"
+      android:title="@string/settings.slack_token" />
 
-  <SwitchPreference
-    android:key="key_battery_warning"
-    android:title="Enable Battery Warning"
-    app:defaultValue="false" />
+    <EditTextPreference
+      android:icon="@drawable/ic_device_name"
+      android:key="key_device_name"
+      android:title="@string/settings.device_name" />
 
-  <EditTextPreference
-    android:defaultValue="25"
-    android:digits="0123456789"
-    android:icon="@drawable/ic_battery"
-    android:inputType="numberDecimal"
-    android:key="key_battery_threshold"
-    android:summary="Low battery threshold"
-    android:title="Battery" />
+    <Preference
+      android:icon="@drawable/ic_message"
+      android:key="btnSendTest"
+      android:title="@string/settings.send_test_message" />
+  </PreferenceCategory>
+
+  <PreferenceCategory
+    android:title="Battery"
+    app:iconSpaceReserved="false">
+
+    <SwitchPreference
+      android:icon="@drawable/ic_alarm"
+      android:key="key_battery_warning"
+      android:title="@string/settings.enable_warning"
+      app:defaultValue="false" />
+
+    <EditTextPreference
+      android:defaultValue="25"
+      android:digits="0123456789"
+      android:icon="@drawable/ic_battery"
+      android:inputType="numberDecimal"
+      android:key="key_battery_threshold"
+      android:title="@string/settings.percent_threshold"
+      app:isPreferenceVisible="false" />
+  </PreferenceCategory>
 
   <Preference
-    android:icon="@drawable/ic_message"
-    android:key="btnSendTest"
-    android:title="Send Test Message" />
+    android:key="tvAppVersion"
+    android:selectable="false"
+    android:title="@string/settings.app_version"
+    app:allowDividerAbove="true" />
 </PreferenceScreen>

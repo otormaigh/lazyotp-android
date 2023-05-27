@@ -4,8 +4,9 @@ import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.Data
 import androidx.work.WorkerParameters
-import ie.otormaigh.lazyotp.BuildConfig
 import ie.otormaigh.lazyotp.api.Api
+import ie.otormaigh.lazyotp.api.BatteryMessageRequest
+import ie.otormaigh.lazyotp.api.SmsMessageRequest
 import ie.otormaigh.lazyotp.toolbox.deviceName
 import ie.otormaigh.lazyotp.toolbox.settingsPrefs
 import ie.otormaigh.lazyotp.toolbox.slackToken
@@ -25,11 +26,9 @@ class SlackPostWorker(context: Context, workerParams: WorkerParameters) :
         else -> throw UnsupportedOperationException("{${inputData.getString(ARG_TYPE)} is not supported}")
       }
 
-      Api.instance.postSmsCode(
-        message.toRequestBody("application/json".toMediaTypeOrNull()),
-        applicationContext.settingsPrefs.slackToken.takeIf { it.isNotEmpty() }
-          ?: BuildConfig.SLACK_TOKEN
-      )
+      if (message.isNullOrEmpty()) return Result.failure()
+      else sendMessage(message)
+
     } catch (e: Exception) {
       Timber.e(e)
     }
@@ -37,68 +36,40 @@ class SlackPostWorker(context: Context, workerParams: WorkerParameters) :
     return Result.success()
   }
 
-  private fun createSmsMessage(): String {
-    val sender = inputData.getString(ARG_SENDER)
-    val smsCode = inputData.getString(ARG_SMS_CODE)
-    return """
-        {
-          "text": "$smsCode",
-          "attachments": [
-            {
-              "footer": "Version: ${BuildConfig.VERSION_NAME}",
-              "fields": [
-                {
-                  "title" : "Phone",
-                  "value" : "$deviceName",
-                  "short" : true
-                },
-                {
-                  "title" : "Sender",
-                  "value" : "$sender",
-                  "short" : true
-                },
-                {
-                  "title" : "Code",
-                  "value" : "$smsCode",
-                  "short" : true
-                }
-              ]
-            },
-          ]
-        }
-    """.trimIndent()
+  private suspend fun sendMessage(message: String) {
+    val slackToken = applicationContext.settingsPrefs.slackToken.takeIf { it.isNotEmpty() } ?: return
+
+    Api.instance.postSmsCode(
+      message.toRequestBody("application/json".toMediaTypeOrNull()),
+      slackToken
+    )
   }
 
-  private fun createBatteryMessage(): String = """
-        {
-          "attachments": [
-            {
-              "text": "My Battery Is Low and It’s Getting Dark",
-              "footer": "Version: ${BuildConfig.VERSION_NAME}",
-              "fields": [
-                {
-                  "title" : "Phone",
-                  "value" : "$deviceName",
-                  "short" : true
-                }
-              ]
-            },
-          ]
-        }
-    """.trimIndent()
+  private fun createSmsMessage(): String? {
+    val sender = inputData.getString(ARG_SENDER)
+    val smsCode = inputData.getString(ARG_SMS_CODE)
+    val sentTimestamp = inputData.getLong(ARG_TIMESTAMP, -1)
+
+    return SmsMessageRequest(deviceName, sender, smsCode, sentTimestamp).jsonString
+  }
+
+  private fun createBatteryMessage(): String =
+    BatteryMessageRequest(deviceName).jsonString
 
   companion object {
     private const val ARG_TYPE = "arg.type"
     private const val ARG_SMS_CODE = "arg.sms_code"
     private const val ARG_SENDER = "arg.sender"
+    private const val ARG_TIMESTAMP = "arg.sent_timestamp"
 
     private const val TYPE_BATTERY_LEVEL = "type.battery_level"
     private const val TYPE_SMS_CODE = "type.sms_code"
 
-    fun smsCodeData(sender: String, smsCode: String) = Data.Builder().apply {
+    fun smsCodeData(sender: String, smsCode: String, sentTimestamp: Long) = Data.Builder().apply {
       putString(ARG_TYPE, TYPE_SMS_CODE)
       putString(ARG_SENDER, sender)
       putString(ARG_SMS_CODE, smsCode)
+      putLong(ARG_TIMESTAMP, sentTimestamp)
     }.build()
 
     fun lowBatteryData() = Data.Builder().apply {

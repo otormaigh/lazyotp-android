@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="format.digit_count">%s cìffre</string>
+
+  <string name="notif.content_text">Non te \'nguaià, va\' a fà na pennichella, \'o sciù occhie a tutt\' \'i còdice OTP.</string>
+
+  <string name="title.add_provider.add">Aggiùnge Smandarino</string>
+  <string name="title.add_provider.update">Aggiurne Smandarino</string>
+  <string name="title.settings">Settaggi</string>
+
+  <string name="unknown">Nisciuno</string>
+  <string name="empty">Vutato</string>
+  <string name="slack_token_empty">Errore: \'O Token Slack è vuoto!</string>
+
+  <string name="message">Messaggio</string>
+  <string name="sender">Smandarino</string>
+  <string name="sender_name">Nome \'e Smandarino</string>
+  <string name="digits">Cìffre</string>
+  <string name="save">Savajie</string>
+
+  <string name="settings.slack_token">Token Slack</string>
+  <string name="settings.device_name">Nome Dispositivo</string>
+  <string name="settings.send_test_message">Mandajie \'a messaġgio \'e prove</string>
+  <string name="settings.enable_warning">Abbilite avertenza</string>
+  <string name="settings.percent_threshold">Sfiezza percentuale</string>
+  <string name="settings.app_version">Versione App</string>
+
+  <string name="content_desc.fail_frowny_face">Na faccia che sbotto cu \'nu sorriso all\'inghiottio, ca trasmette \'a sensazione \'e fialurie o dètiene. Nòn è state ricevuta \'a codice.</string>
+  <string name="content_desc.success_smiley_face">Na faccia chiagne cu \'nu riso amplo, ca trasmette \'a sensazione \'e successo e acconchiamento. È state ricevuta \'a codice.</string>
+</resources>
+

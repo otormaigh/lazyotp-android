@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/tilProvider"
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="16dp"
+    android:hint="@string/sender_name"
+    android:textColorHint="@color/outline_color_selector"
+    app:boxStrokeColor="@color/outline_color_selector"
+    app:layout_constraintEnd_toStartOf="@id/tilDigitCount"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintWidth_percent="0.7">
+
+    <com.google.android.material.textfield.TextInputEditText
+      android:id="@+id/etProvider"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:imeOptions="actionNext"
+      android:inputType="text"
+      android:lines="1"
+      android:textColor="#FFF" />
+  </com.google.android.material.textfield.TextInputLayout>
+
+  <com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/tilDigitCount"
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="16dp"
+    android:hint="@string/digits"
+    android:textColorHint="@color/outline_color_selector"
+    app:boxStrokeColor="@color/outline_color_selector"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@id/tilProvider"
+    app:layout_constraintTop_toTopOf="@id/tilProvider">
+
+    <com.google.android.material.textfield.TextInputEditText
+      android:id="@+id/etDigitCount"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:digits="0123456789,"
+      android:imeOptions="actionDone"
+      android:inputType="number"
+      android:textColor="#FFF" />
+  </com.google.android.material.textfield.TextInputLayout>
+
+  <TextView
+    android:id="@+id/tvSenderTitle"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:text="@string/sender"
+    android:textColor="@color/colorTextPrimary"
+    android:textSize="18sp"
+    android:textStyle="bold"
+    android:visibility="invisible"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/tilProvider"
+    tools:visibility="visible" />
+
+  <TextView
+    android:id="@+id/tvSender"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:textColor="@color/colorTextSecondary"
+    android:textIsSelectable="true"
+    android:textSize="16sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/tvSenderTitle"
+    tools:text="Sender" />
+
+  <TextView
+    android:id="@+id/tvMessageTitle"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:text="@string/message"
+    android:textColor="@color/colorTextPrimary"
+    android:textSize="18sp"
+    android:textStyle="bold"
+    android:visibility="invisible"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/tvSender"
+    tools:visibility="visible" />
+
+  <TextView
+    android:id="@+id/tvMessage"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:textColor="@color/colorTextSecondary"
+    android:textIsSelectable="true"
+    android:textSize="16sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/tvMessageTitle"
+    tools:text="Message" />
+
+  <TextView
+    android:id="@+id/tvDigitsTitle"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:text="@string/digits"
+    android:textColor="@color/colorTextPrimary"
+    android:textSize="18sp"
+    android:textStyle="bold"
+    android:visibility="invisible"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/tvMessage"
+    tools:visibility="visible" />
+
+  <TextView
+    android:id="@+id/tvDigits"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:textColor="@color/colorTextSecondary"
+    android:textIsSelectable="true"
+    android:textSize="16sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/tvDigitsTitle"
+    tools:text="Digits" />
+
+  <ImageView
+    android:id="@+id/ivSuccessFail"
+    android:layout_width="176dp"
+    android:layout_height="176dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintDimensionRatio="1:1"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/tvDigits" />
+
+  <TextView
+    android:id="@+id/tvCode"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="36dp"
+    android:textColor="@color/colorTextPrimary"
+    android:textSize="36sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/ivSuccessFail"
+    tools:text="123ABC" />
+</androidx.constraintlayout.widget.ConstraintLayout>

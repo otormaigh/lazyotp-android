@@ -1,0 +1,8 @@
+CREATE TABLE sms_code_provider_backup(
+  sender TEXT PRIMARY KEY NOT NULL,
+  codeLength TEXT NOT NULL
+);
+INSERT INTO sms_code_provider_backup(sender, codeLength)
+SELECT sender, codeLength FROM sms_code_provider;
+DROP TABLE sms_code_provider;
+ALTER TABLE sms_code_provider_backup RENAME TO sms_code_provider;

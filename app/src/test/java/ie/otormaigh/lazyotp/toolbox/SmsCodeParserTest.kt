@@ -46,4 +46,16 @@ class SmsCodeParserTest {
     assertThat(SmsCodeParser.parse("SMS code 1A234.", "4,5"))
       .isEqualTo("1A234")
   }
+
+  @Test
+  fun testParseCodeLengthFromMessage() {
+    assertThat(SmsCodeParser.parseCodeLengthFromMessage("Test Letters and numbers: 807C71."))
+      .isEqualTo("6")
+
+    assertThat(SmsCodeParser.parseCodeLengthFromMessage("Test Letters and numbers: 807C."))
+      .isEqualTo("4")
+
+    assertThat(SmsCodeParser.parseCodeLengthFromMessage("Test Letters and numbers: "))
+      .isNull()
+  }
 }
