@@ -1,11 +1,14 @@
 package ie.otormaigh.lazyotp.service
 
 import android.content.Context
+import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.Data
 import androidx.work.WorkerParameters
-import ie.otormaigh.lazyotp.api.Api
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
 import ie.otormaigh.lazyotp.api.BatteryMessageRequest
+import ie.otormaigh.lazyotp.api.LazySmsApi
 import ie.otormaigh.lazyotp.api.SmsMessageRequest
 import ie.otormaigh.lazyotp.toolbox.deviceName
 import ie.otormaigh.lazyotp.toolbox.settingsPrefs
@@ -14,8 +17,15 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 import timber.log.Timber
 
-class SlackPostWorker(context: Context, workerParams: WorkerParameters) :
-  CoroutineWorker(context, workerParams) {
+@HiltWorker
+class SlackPostWorker @AssistedInject constructor(
+  @Assisted
+  private val appContext: Context,
+  @Assisted
+  private val params: WorkerParameters,
+  private val api: LazySmsApi
+) : CoroutineWorker(appContext, params) {
+
   private val deviceName by lazy { applicationContext.settingsPrefs.deviceName }
 
   override suspend fun doWork(): Result {
@@ -39,7 +49,7 @@ class SlackPostWorker(context: Context, workerParams: WorkerParameters) :
   private suspend fun sendMessage(message: String) {
     val slackToken = applicationContext.settingsPrefs.slackToken.takeIf { it.isNotEmpty() } ?: return
 
-    Api.instance.postSmsCode(
+    api.postSmsCode(
       message.toRequestBody("application/json".toMediaTypeOrNull()),
       slackToken
     )
