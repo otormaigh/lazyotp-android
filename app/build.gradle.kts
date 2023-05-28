@@ -106,6 +106,8 @@ dependencies {
   implementation(libs.androidx.work.runtime)
   implementation(libs.androidx.test.runner)
   implementation(libs.androidx.test.rules)
+  implementation(libs.androidx.hilt.work)
+  kapt(libs.androidx.hilt.compiler)
 
   implementation(libs.google.material)
   implementation(libs.google.hilt.core)
