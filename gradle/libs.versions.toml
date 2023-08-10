@@ -14,7 +14,7 @@ android-build = { module = "com.android.tools.build:gradle", version.ref = "agp"
 
 # androidx
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version = "1.7.0-alpha02" }
-androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version = "2.2.0-alpha10" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version = "2.2.0-alpha12" }
 androidx-core = { group = "androidx.core", name = "core-ktx", version = "1.10.1" } # 1.12.0-alpha04 compile against "UpsideDownCake"
 androidx-preference = { group = "androidx.preference", name = "preference", version = "1.2.0" }
 androidx-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version = "2.6.1" }
