@@ -22,6 +22,6 @@ tasks.register("clean", Delete::class) {
 }
 
 tasks.withType<Wrapper> {
-  gradleVersion = "8.1.1"
+  gradleVersion = "8.7"
   distributionType = Wrapper.DistributionType.BIN
 }
