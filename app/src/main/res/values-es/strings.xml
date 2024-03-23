@@ -27,4 +27,6 @@
 
   <string name="content_desc.fail_frowny_face">Una imagen que representa una cara fruncida con la boca hacia abajo, transmitiendo una sensación de fracaso o decepción. El código no ha sido recibido.</string>
   <string name="content_desc.success_smiley_face">Una imagen que representa una cara sonriente con una amplia sonrisa, transmitiendo una sensación de éxito y logro. El código ha sido recibido.</string>
+    <string name="settings.debug_sms_info">Info de SMS</string>
+  <string name="settings.copy_sender">Copiar remitente</string>
 </resources>

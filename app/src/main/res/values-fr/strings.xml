@@ -28,4 +28,6 @@
 
   <string name="content_desc.fail_frowny_face">Une image représentant un visage fronçant les sourcils avec une bouche renversée, exprimant un sentiment d\'échec ou de déception. Le code n\'a pas été reçu.</string>
   <string name="content_desc.success_smiley_face">Une image représentant un visage souriant avec un large sourire, exprimant un sentiment de réussite et d\'accomplissement. Le code a été reçu.</string>
+    <string name="settings.debug_sms_info">Infos SMS</string>
+  <string name="settings.copy_sender">Copier l\'expéditeur</string>
 </resources>

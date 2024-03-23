@@ -27,5 +27,7 @@
 
   <string name="content_desc.fail_frowny_face">Ein Bild, das ein Gesicht mit zusammengezogenen Augenbrauen und einem nach unten gerichteten Mund darstellt und ein Gefühl von Misserfolg oder Enttäuschung vermittelt. Der Code wurde nicht empfangen.</string>
   <string name="content_desc.success_smiley_face">Ein Bild, das ein lächelndes Gesicht mit einem breiten Grinsen darstellt und ein Gefühl von Erfolg und Leistung vermittelt. Der Code wurde empfangen.</string>
+    <string name="settings.debug_sms_info">SMS-Info</string>
+  <string name="settings.copy_sender">Absender kopieren</string>
 
 </resources>
