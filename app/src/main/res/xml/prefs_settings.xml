@@ -41,6 +41,29 @@
       app:isPreferenceVisible="false" />
   </PreferenceCategory>
 
+  <PreferenceCategory
+    android:iconSpaceReserved="false"
+    android:title="Debug">
+
+    <SwitchPreference
+      android:icon="@drawable/ic_andy"
+      android:key="key_switch_debug_sms_info"
+      android:title="@string/settings.debug_sms_info"
+      app:defaultValue="false" />
+
+    <Preference
+      android:key="key_debug_sms_info"
+      android:selectable="false"
+      android:summary="Testest"
+      app:isPreferenceVisible="false" />
+
+    <Preference
+      android:icon="@drawable/ic_copy"
+      android:key="btnCopySender"
+      android:title="@string/settings.copy_sender"
+      app:isPreferenceVisible="false" />
+  </PreferenceCategory>
+
   <Preference
     android:key="tvAppVersion"
     android:selectable="false"

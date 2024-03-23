@@ -6,7 +6,9 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.provider.Telephony
+import android.telephony.SmsMessage
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.AndroidEntryPoint
 import ie.otormaigh.lazyotp.data.SmsProviderStore
 import ie.otormaigh.lazyotp.toolbox.SmsCodeParser
@@ -35,6 +37,8 @@ class SmsReceiver : BroadcastReceiver() {
       Timber.d("SmsMessage -> ${smsMessage.messageBody}")
       Timber.d("From -> ${smsMessage.displayOriginatingAddress}")
 
+      onMessageReceived.value = smsMessage
+
       smsProviderStore.fetchWithId(smsMessage.displayOriginatingAddress)?.let { provider ->
         WorkScheduler.oneTimeRequest<SlackPostWorker>(
           context,
@@ -46,5 +50,9 @@ class SmsReceiver : BroadcastReceiver() {
         )
       }
     }
+  }
+
+  companion object {
+    val onMessageReceived: MutableLiveData<SmsMessage> = MutableLiveData()
   }
 }
