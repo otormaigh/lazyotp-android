@@ -1,20 +1,8 @@
-buildscript {
-  repositories {
-    google()
-    mavenCentral()
-  }
-  dependencies {
-    classpath(libs.android.build)
-    classpath(libs.kotlin.plugin)
-    classpath(libs.google.hilt.plugin)
-  }
-}
-
-allprojects {
-  repositories {
-    google()
-    mavenCentral()
-  }
+plugins {
+  alias(libs.plugins.android.application) apply false
+  alias(libs.plugins.kotlin.android) apply false
+  alias(libs.plugins.google.hilt) apply false
+  alias(libs.plugins.google.ksp) apply false
 }
 
 tasks.register("clean", Delete::class) {

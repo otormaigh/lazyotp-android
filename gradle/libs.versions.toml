@@ -9,9 +9,6 @@ androidx-hilt = "1.2.0"
 sqldelight = "2.0.1"
 
 [libraries]
-# android
-android-build = { module = "com.android.tools.build:gradle", version.ref = "agp" }
-
 # androidx
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version = "1.7.0-alpha03" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version = "2.2.0-alpha13" }
@@ -27,12 +24,10 @@ androidx-hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", vers
 # google
 google-material = { group = "com.google.android.material", name = "material", version = "1.12.0-beta01" }
 google-truth = { group = "com.google.truth", name = "truth", version = "1.4.2" }
-google-hilt-plugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "hilt" }
 google-hilt-core = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 google-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 
 # jetbrains
-kotlin-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlin" }
 kotlin-coroutine-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlin-coroutine" }
 kotlin-coroutine-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlin-coroutine" }
@@ -50,4 +45,11 @@ misc-timber = { group = "com.jakewharton.timber", name = "timber", version = "5.
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
+google-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+google-ksp = { id = "com.google.devtools.ksp", version = "2.0.0-Beta5-1.0.19" }
+
+square-sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
+
