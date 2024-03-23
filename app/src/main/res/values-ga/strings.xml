@@ -27,4 +27,6 @@
 
   <string name="content_desc.fail_frowny_face">Íomhá a léiríonn aghaidh ag dírigh le frithghráin, ag comhaireamh earráide nó diomá. Níor faighte an cód.</string>
   <string name="content_desc.success_smiley_face">Íomhá a léiríonn aghaidh ag gáire le teann gáire, ag comhaireamh rath agus éacht. Tá an cód faighte.</string>
+    <string name="settings.debug_sms_info">Eolas SMS</string>
+  <string name="settings.copy_sender">Cóipeáil an Seoltóir</string>
 </resources>

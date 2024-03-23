@@ -1,11 +1,13 @@
+import app.cash.sqldelight.core.capitalize
 import ie.otormaigh.lazyotp.plugin.SemVer
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  id("com.android.application")
-  kotlin("android")
-  kotlin("kapt")
-  id("dagger.hilt.android.plugin")
-  id("app.cash.sqldelight").version(libs.versions.sqldelight)
+  alias(libs.plugins.android.application)
+  alias(libs.plugins.kotlin.android)
+  alias(libs.plugins.google.hilt)
+  alias(libs.plugins.google.ksp)
+  alias(libs.plugins.square.sqldelight)
 }
 
 if (file("../enc.properties").exists()) {
@@ -14,12 +16,12 @@ if (file("../enc.properties").exists()) {
 
 android {
   namespace = "ie.otormaigh.lazyotp"
-  compileSdk = 33
+  compileSdk = 34
 
   defaultConfig {
     applicationId = "ie.otormaigh.lazyotp"
     minSdk = 21
-    targetSdk = 33
+    targetSdk = 34
     versionCode = SemVer.code
     versionName = SemVer.name
     base.archivesName.set("lazyotp-$versionName")
@@ -107,11 +109,11 @@ dependencies {
   implementation(libs.androidx.test.runner)
   implementation(libs.androidx.test.rules)
   implementation(libs.androidx.hilt.work)
-  kapt(libs.androidx.hilt.compiler)
+  ksp(libs.androidx.hilt.compiler)
 
   implementation(libs.google.material)
   implementation(libs.google.hilt.core)
-  kapt(libs.google.hilt.compiler)
+  ksp(libs.google.hilt.compiler)
 
   implementation(libs.kotlin.stdlib)
   implementation(libs.kotlin.coroutine.core)
@@ -130,3 +132,28 @@ dependencies {
 }
 
 tasks.getByName("preBuild").dependsOn(":app:generateSqlDelightInterface")
+
+/**
+e: [ksp] InjectProcessingStep was unable to process 'SmsProviderStore(error.NonExistentClass)' because 'error.NonExistentClass' could not be resolved.
+
+Dependency trace:
+=> element (CLASS): ie.otormaigh.lazyotp.data.SmsProviderStore
+=> element (CONSTRUCTOR): SmsProviderStore(error.NonExistentClass)
+=> type (EXECUTABLE constructor): (error.NonExistentClass)void
+=> type (ERROR parameter type): error.NonExistentClass
+
+If type 'error.NonExistentClass' is a generated type, check above for compilation errors that may have prevented the type from being generated. Otherwise, ensure that type 'error.NonExistentClass' is on your classpath.
+e: [ksp] InjectProcessingStep was unable to process 'smsCodeProviderQueries' because 'error.NonExistentClass' could not be resolved.
+
+https://github.com/google/dagger/issues/4158
+ */
+androidComponents {
+  onVariants(selector().all()) { variant ->
+    afterEvaluate {
+      val variantName = variant.name.capitalize()
+      tasks.getByName<KotlinCompile>("ksp${variantName}Kotlin") {
+        setSource(tasks.getByName("generate${variantName}LazyOtpDatabaseInterface").outputs)
+      }
+    }
+  }
+}

@@ -10,7 +10,7 @@ jobs:
   pre-build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.5.2
+      - uses: actions/checkout@v4.1.2
       - uses: actions/cache@v3.3.1
         with:
           path: |
@@ -19,13 +19,13 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
           restore-keys: ${{ runner.os }}-gradle-
       - name: Setup Java
-        uses: actions/setup-java@v3.11.0
+        uses: actions/setup-java@v4.2.1
         with:
           java-version: 17
           distribution: 'adopt'
 
       - name: Validate Gradle Wrapper
-        uses: gradle/wrapper-validation-action@v1.0.6
+        uses: gradle/wrapper-validation-action@v2.1.2
       - name: Run dependencies
         run: ./gradlew :app:dependencies --stacktrace --scan
 
@@ -33,7 +33,7 @@ jobs:
     needs: pre-build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.5.2
+      - uses: actions/checkout@v4.1.2
       - uses: actions/cache@v3.3.1
         with:
           path: |
@@ -42,7 +42,7 @@ jobs:
           key: check-gradle-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
           restore-keys: ${{ runner.os }}-gradle-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
       - name: Setup Java
-        uses: actions/setup-java@v3.11.0
+        uses: actions/setup-java@v4.2.1
         with:
           java-version: 17
           distribution: 'adopt'
@@ -56,7 +56,7 @@ jobs:
     needs: pre-build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.5.2
+      - uses: actions/checkout@v4.1.2
       - uses: actions/cache@v3.3.1
         with:
           path: |
@@ -65,7 +65,7 @@ jobs:
           key: test-gradle-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
           restore-keys: ${{ runner.os }}-gradle-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
       - name: Setup Java
-        uses: actions/setup-java@v3.11.0
+        uses: actions/setup-java@v4.2.1
         with:
           java-version: 17
           distribution: 'adopt'
@@ -86,7 +86,7 @@ jobs:
       - test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.5.2
+      - uses: actions/checkout@v4.1.2
       - uses: actions/cache@v3.3.1
         with:
           path: |
@@ -95,7 +95,7 @@ jobs:
           key: build-gradle-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
           restore-keys: ${{ runner.os }}-gradle-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
       - name: Setup Java
-        uses: actions/setup-java@v3.11.0
+        uses: actions/setup-java@v4.2.1
         with:
           java-version: 17
           distribution: 'adopt'
@@ -131,7 +131,7 @@ jobs:
       pull-requests: write
 
     steps:
-      - uses: actions/checkout@v3.5.2
+      - uses: actions/checkout@v4.1.2
       - name: Download Archived binaries
         uses: actions/download-artifact@v3.0.2
         with:
@@ -146,11 +146,11 @@ jobs:
           .github/bin/diffuse-0.1.0-binary.jar diff --apk assets/*.apk release-${{ github.sha }}.apk > apk-diff-${{ github.sha }}.txt
           printf "### Diffuse stats for \`$(echo ${GITHUB_BASE_REF} | cut -c1-7)\` ➡ $(echo ${GITHUB_SHA} | cut -c1-7) \n\n\`\`\`\n" > apk-pr-comment.txt && sed '/====   DEX   ====/q' apk-diff-${{ github.sha }}.txt | tac | sed "1,2d" | tac | sed -e :a -e '/^\n*$/{$d;N;};/\n$/ba' >> apk-pr-comment.txt && echo "\`\`\`"  >> apk-pr-comment.txt
       - name: Add APK diff
-        uses: machine-learning-apps/pr-comment@1.0.0
+        uses: thollander/actions-comment-pull-request@v2.5.0
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          path: apk-pr-comment.txt
+          filePath: apk-pr-comment.txt
 
       - name: Upload full diff
         uses: actions/upload-artifact@v3.1.2

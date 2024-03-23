@@ -12,6 +12,7 @@ val SharedPreferences.slackToken: String get() = getString("key_slack_token", nu
 val SharedPreferences.deviceName: String get() = getString("key_device_name", null) ?: "unknown"
 val SharedPreferences.batteryThreshold: Int get() = getString("key_battery_threshold", "-1")?.toInt() ?: -1
 val SharedPreferences.batteryWarningEnabled: Boolean get() = getBoolean("key_battery_warning", false)
+val SharedPreferences.debugSMSInfoEnabled: Boolean get() = getBoolean("key_switch_debug_sms_info", false)
 var SharedPreferences.batteryWarningSent: Boolean
   get() = getBoolean("key_battery_warning_sent", false)
   set(value) = edit {
