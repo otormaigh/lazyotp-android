@@ -14,12 +14,12 @@ if (file("../enc.properties").exists()) {
 
 android {
   namespace = "ie.otormaigh.lazyotp"
-  compileSdk = 33
+  compileSdk = 34
 
   defaultConfig {
     applicationId = "ie.otormaigh.lazyotp"
     minSdk = 21
-    targetSdk = 33
+    targetSdk = 34
     versionCode = SemVer.code
     versionName = SemVer.name
     base.archivesName.set("lazyotp-$versionName")
