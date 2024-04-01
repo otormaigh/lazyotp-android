@@ -4,7 +4,7 @@ kotlin = "2.0.0-Beta5"
 kotlin-coroutine = "1.8.1-Beta"
 okhttp = "5.0.0-alpha.12"
 retrofit = "2.10.0"
-hilt = "2.51"
+hilt = "2.51.1"
 androidx-hilt = "1.2.0"
 sqldelight = "2.0.1"
 
