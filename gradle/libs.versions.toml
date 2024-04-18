@@ -14,7 +14,7 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version = "2.2.0-alpha13" }
 androidx-core = { group = "androidx.core", name = "core-ktx", version = "1.13.0-beta01" }
 androidx-preference = { group = "androidx.preference", name = "preference", version = "1.2.1" }
-androidx-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version = "2.8.0-alpha03" }
+androidx-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version = "2.8.0-beta01" }
 androidx-work-runtime = { group = "androidx.work", name = "work-runtime-ktx", version = "2.10.0-alpha01" }
 androidx-test-runner = { group = "androidx.test", name = "runner", version = "1.6.0-alpha06" }
 androidx-test-rules = { group = "androidx.test", name = "rules", version = "1.6.0-alpha03" }
