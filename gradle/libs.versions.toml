@@ -22,7 +22,7 @@ androidx-hilt-work = { group = "androidx.hilt", name = "hilt-work", version.ref 
 androidx-hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "androidx-hilt" }
 
 # google
-google-material = { group = "com.google.android.material", name = "material", version = "1.12.0-beta01" }
+google-material = { group = "com.google.android.material", name = "material", version = "1.13.0-alpha01" }
 google-truth = { group = "com.google.truth", name = "truth", version = "1.4.2" }
 google-hilt-core = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 google-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
