@@ -40,7 +40,7 @@ square-sqldelight-driver = { group = "app.cash.sqldelight", name = "android-driv
 
 # misc
 misc-junit = { group = "junit", name = "junit", version = "4.13.2" }
-misc-mockk = { group = "io.mockk", name = "mockk", version = "1.13.10" }
+misc-mockk = { group = "io.mockk", name = "mockk", version = "1.13.11" }
 misc-timber = { group = "com.jakewharton.timber", name = "timber", version = "5.0.1" }
 
 [plugins]
