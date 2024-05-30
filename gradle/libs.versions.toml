@@ -10,7 +10,7 @@ sqldelight = "2.0.1"
 
 [libraries]
 # androidx
-androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version = "1.7.0-alpha03" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version = "1.7.0" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version = "2.2.0-alpha13" }
 androidx-core = { group = "androidx.core", name = "core-ktx", version = "1.13.0-beta01" }
 androidx-preference = { group = "androidx.preference", name = "preference", version = "1.2.1" }
